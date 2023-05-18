@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Community Page</h1>
-    <router-link to="/create">Create</router-link>
+    <h1>Community Page <span>    
+      <router-link to="/create"><button type="button" class="btn btn-outline-light">CREATE</button></router-link>
+    </span></h1>
     <ArticleList/>
     <router-view/>
   </div>

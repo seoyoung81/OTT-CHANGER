@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h5>{{ article.id }}</h5>
+    <!-- <h5>{{ article.id }}</h5> -->
+    <br>
     <p>{{ article.title }}</p>
     <router-link :to="{
       name: 'ArticleDetailView',
       params: {id: article.id }}">
-      [DETAIL]
+      <button type="button" class="btn btn-outline-info">DETAIL</button>
     </router-link>
     <hr>
   </div>

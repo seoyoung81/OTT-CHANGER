@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-dark bg-gradient">
     <nav>
       <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/login" >Log In</router-link> |
@@ -7,8 +7,19 @@
       <router-link to="/community">Community</router-link>
     </nav>
     <router-view/>
+    <MainView/>
   </div>
 </template>
+
+<script>
+import MainView from '@/components/Movie/MainView'
+export default {
+    name: 'IntroView',
+    components: {
+      MainView
+    }
+}
+</script>
 
 <style>
 #app {
@@ -16,7 +27,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 nav {

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Article List</h1>
+    <!-- <h1>Article List</h1> -->
+    <br>
     <ArticleItem
     v-for="article in articles" :key="article.id" :article="article"/>
   </div>
