@@ -15,7 +15,14 @@ export default new Vuex.Store({
   state: {
     articles: [
     ],
+    comments: [
+    ],
     token: null,
+    user: {
+      id: null,
+      username: null,
+      email: null,
+    }
   },
   getters: {
     isLogin(state) {
@@ -25,30 +32,78 @@ export default new Vuex.Store({
   mutations: {
     GET_ARTICLES(state, articles) {
       state.articles = articles
-      console.log(state.articles)
+      // console.log(state.articles)
+    },
+    GET_COMMENTS(state, comments) {
+      state.comments = comments
+      // console.log(state.articles)
     },
     SAVE_TOKEN_SIGNUP(state, token) {
-      console.log(token)
+      // console.log(token)
       state.token = token
       router.push({name: 'LogInView'})
     },
     SAVE_TOKEN_LOGIN(state, token) {
-      console.log(token)
+      // console.log(token)
       state.token = token
-      router.push({name: 'HomeView'})
+      router.push({name: 'CommunityView'})
       // 일단 홈으로 -> 메인페이지로 보낼 것
+    },
+    GET_USER_INFO(state, userinfo) {
+      state.user.id = userinfo.pk
+      state.user.username = userinfo.username
+      state.user.email = userinfo.email
+      console.log('잘 들어왔는지 확인', state.user)
     }
   },
   actions: {
     getArticles(context) {
-      console.log('엑시오스 전 !@')
+      // console.log('엑시오스 전 !@')
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/articles/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
       })
         .then((response) => {
-        console.log(response, context)
+          console.log('get Article response and context::::::::', response, context)
           context.commit('GET_ARTICLES', response.data)
+          // console.log('실행!@')
+        })
+        .catch((error) => {
+        console.log(error)
+      })
+    },
+    getUserInfo(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        
+      })
+      .then((response) => {
+        // console.log()
+        console.log('응답 !!!!!!!!!!!!', response)
+        console.log('이름!!!!!!!!!!!', response.data.username)
+        console.log('PK!!!!!!!!!!!', response.data.pk)
+        context.commit('GET_USER_INFO', response.data)
+      })
+    },
+    getComments(context) {
+      // console.log('엑시오스 전 !@')
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/comments/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((response) => {
+        // console.log(response, context)
+          context.commit('GET_COMMENTS', response.data)
         })
         .catch((error) => {
         console.log(error)
@@ -59,10 +114,10 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
-      console.log(email)
-      console.log(username)
-      console.log(password1)
-      console.log(password2)
+      // console.log(email)
+      // console.log(username)
+      // console.log(password1)
+      // console.log(password2)
 
       axios({
         method: 'post',
@@ -72,9 +127,9 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
-        console.log(response)
-        console.log(response.data)
-        console.log(response.data.key)
+        // console.log(response)
+        // console.log(response.data)
+        // console.log(response.data.key)
         context.commit('SAVE_TOKEN_SIGNUP', response.data.key)
       })
       .catch((error) => {
@@ -84,8 +139,8 @@ export default new Vuex.Store({
     login(context, payload) {
       const username = payload.username
       const password = payload.password
-      console.log(username)
-      console.log(password)
+      // console.log(username)
+      // console.log(password)
 
       axios({
         method: 'post',
@@ -94,9 +149,9 @@ export default new Vuex.Store({
           username, password
         }
       })
-        .then((response) => {
+      .then((response) => {
         context.commit('SAVE_TOKEN_LOGIN', response.data.key)
-        })
+      })
       .catch((error) => 
         console.log(error))
     },

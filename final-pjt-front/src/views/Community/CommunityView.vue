@@ -1,19 +1,18 @@
 <template>
   <div>
     <h1>Community Page</h1>
-    <ArticleForm/>
+    <router-link to="/create">Create</router-link>
     <ArticleList/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import ArticleForm from '@/components/ArticleForm'
-import ArticleList from '@/components/ArticleList'
+import ArticleList from '@/components/Community/ArticleList'
 
 export default {
   name: 'CommunityView',
   components: {
-    ArticleForm,
     ArticleList,
   },
   computed:{
@@ -25,20 +24,21 @@ export default {
     this.getArticles()
   },
   methods: {
+    getComments() {
+      this.$store.dispatch('getComments')
+    },
     getArticles() {
       if (this.isLogin) {
         this.$store.dispatch('getArticles')
-        console.log('들어간다~~')
+        this.$store.dispatch('getUserInfo')
+        this.getComments()
       } else {
         alert('로그인이 필요한 페이지입니다')
         this.$router.push({ name: 'LogInView' })
       }
-
-
       // 로그인이 되어 있으면 getArticles action 실행
       // 로그인 X라면 login 페이지로 이동
-
-    }
+    },
   }
 }
 </script>

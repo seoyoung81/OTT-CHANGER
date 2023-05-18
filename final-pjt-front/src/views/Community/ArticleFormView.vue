@@ -21,12 +21,15 @@ export default {
     return {
       title: null,
       content: null,
+      user: null,
     }
   },
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
+      const user = this.$store.state.user.id
+      console.log('넌 어디서 찍히는 아이니??', user)
 
       if (!title) {
         alert('제목 입력해주세요')
@@ -38,11 +41,14 @@ export default {
       axios({
         method: 'post',
         url: `${API_URL}/api/v1/articles/`,
-        data: { title, content},
+        data: { title, content, user},
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
       })
-      .then((response) => {
-        console.log(response)
-        this.$router.push({name: 'CommunityView'}).catch(()=>{})
+      .then(() => {
+        // console.log(response)
+        this.$router.push({name: 'CommunityView'})
       })
       .catch((err) => {
         console.log(err)

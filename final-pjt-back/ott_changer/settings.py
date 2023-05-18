@@ -193,3 +193,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+## dj-rest-auth 에서 토큰 외 정보 추가로 불러오기
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'Project.path.to.TokenSerializer',
+}

@@ -28,3 +28,5 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         exclude = ('created_at',)
         read_only_fields = ('username', )
+    
+

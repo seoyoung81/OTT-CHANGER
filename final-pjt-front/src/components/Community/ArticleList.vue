@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ArticleItem from '@/components/ArticleItem.vue'
+import ArticleItem from '@/components/Community/ArticleItem.vue'
 export default {
   name: 'ArticleList',
   components: {

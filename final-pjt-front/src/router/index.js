@@ -1,25 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
 import LogInView from '../views/LogInView.vue'
 import SignUpView from '../views/SignUpView.vue'
-import CommunityView from '../views/CommunityView.vue'
+import CommunityView from '../views/Community/CommunityView.vue'
+import ArticleFormView from '../views/Community/ArticleFormView.vue'
+import ArticleDetailView from '../views/Community/ArticleDetailView.vue'
+import ArticleEditView from '../views/Community/ArticleEditView.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: AboutView
-  },
   {
     path: '/signup',
     name: 'SignUpView',
@@ -34,6 +25,21 @@ const routes = [
     path: '/community',
     name: 'CommunityView',
     component: CommunityView
+  },
+  {
+    path: '/create',
+    name: 'ArticleFormView',
+    component: ArticleFormView
+  },
+  {
+    path: '/:id',
+    name: 'ArticleDetailView',
+    component: ArticleDetailView,
+  },
+  {
+    path: '/edit',
+    name: 'ArticleEditView',
+    component: ArticleEditView,
   },
 ]
 
