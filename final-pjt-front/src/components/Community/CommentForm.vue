@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       content: null,
+      user: null,
     }
   },
   props: {
@@ -26,6 +27,7 @@ export default {
   methods: {
     createComment() {
       const content = this.content
+      const user = this.$store.state.user.id
       const comment = {
         content: content,
         article: this.id
@@ -37,12 +39,16 @@ export default {
       axios({
         method: 'post',
         url: `${API_URL}/api/v1/articles/${this.id}/comments/`,
-        data: { content },
+        data: { content, user },
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
       })
       .then((response) => {
         console.log(response)
         this.$emit('receive-new-comment', comment)
         this.content = ''
+        this.$router.go(0)
       })
       .catch((err) => {
         console.log(err)

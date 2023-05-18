@@ -10,7 +10,7 @@
     <router-view/>
     <button @click="deleteArticle">[DELETE]</button>
     <CommentForm :id="article.id" @receive-new-comment="newComment"/>
-    <CommentList :comment_set="comment_set" />
+    <CommentList :comment_set="comment_set" :article_id="article_id" />
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
     return {
       article: null,
       comment_set : [],
+      article_id: null,
       user: null,
     }
   },
@@ -57,7 +58,10 @@ export default {
         // console.log(response.data.comment_set)
         this.article = response.data
         // console.log(this.article)
+        console.log(response.data)
         this.comment_set = response.data.comment_set
+        this.article_id = response.data.id
+
       })
     },
     newComment(newcomment) {

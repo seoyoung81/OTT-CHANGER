@@ -22,7 +22,8 @@ export default new Vuex.Store({
       id: null,
       username: null,
       email: null,
-    }
+    },
+    
   },
   getters: {
     isLogin(state) {
@@ -54,7 +55,8 @@ export default new Vuex.Store({
       state.user.username = userinfo.username
       state.user.email = userinfo.email
       console.log('잘 들어왔는지 확인', state.user)
-    }
+    },
+    
   },
   actions: {
     getArticles(context) {
@@ -92,6 +94,7 @@ export default new Vuex.Store({
         context.commit('GET_USER_INFO', response.data)
       })
     },
+    
     getComments(context) {
       // console.log('엑시오스 전 !@')
       axios({

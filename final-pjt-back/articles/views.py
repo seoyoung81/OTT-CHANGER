@@ -85,8 +85,12 @@ def comment_detail(request, comment_pk):
         return Response(serializer.data)
 
     elif request.method == 'DELETE':
-        comment.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        user = get_object_or_404(User, pk=request.user.id)
+        if user.pk == comment.user_id:
+            comment.delete()    
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)

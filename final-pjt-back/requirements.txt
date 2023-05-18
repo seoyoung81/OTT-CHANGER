@@ -8,10 +8,9 @@ dj-rest-auth==4.0.0
 Django==3.2.18
 django-allauth==0.52.0
 django-cors-headers==4.0.0
-django-restframework==0.0.1
 djangorestframework==3.14.0
 idna==3.4
-oauthlib==3.2.2
+oauthlib==3.2.1
 pycparser==2.21
 PyJWT==2.7.0
 python3-openid==3.2.0

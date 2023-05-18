@@ -6,6 +6,8 @@
       :key="comment.id"
       :comment="comment"
       :idx="idx"
+      :article_id="article_id"
+      @reload-comment="reloadComment"
     />
   </div>
 </template>
@@ -19,10 +21,17 @@ export default {
   },
   props: {
     comment_set: [],
+    article_id: Number,
   },
   computed: {
     
-}}
+},
+  methods: {
+    reloadComment() {
+      this.$router.go(0)
+    }
+  }
+}
 </script>
 
 <style>
