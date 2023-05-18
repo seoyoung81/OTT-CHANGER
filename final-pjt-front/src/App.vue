@@ -7,16 +7,15 @@
       <router-link to="/community">Community</router-link>
     </nav>
     <router-view/>
-    <MainView/>
+   
   </div>
 </template>
 
 <script>
-import MainView from '@/components/Movie/MainView'
 export default {
     name: 'IntroView',
     components: {
-      MainView
+      
     }
 }
 </script>
@@ -42,4 +41,6 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>
