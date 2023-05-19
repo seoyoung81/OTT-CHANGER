@@ -5,16 +5,33 @@
       <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
       <img :src="poster_path_src" style="width:500px; height:100p">
     </div>
-    
+    <h1>최신영화</h1>
+    <NowPlayingList/><hr>
+    <h1>인기영화</h1>
+    <PopularList/><hr>
+    <h1>개봉예정</h1>
+    <UpComingList/><hr>
+    <h1>Top 20</h1>
+    <TopRatedList/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import _ from "lodash"
+import NowPlayingList from '@/components/Movie/NowPlayingList'
+import PopularList from '@/components/Movie/PopularList'
+import UpComingList from '@/components/Movie/UpComingList'
+import TopRatedList from '@/components/Movie/TopRatedList'
 
 export default {
   name: 'MainView',
+  components: {
+    NowPlayingList,
+    PopularList,
+    UpComingList,
+    TopRatedList
+  },
   data() {
     return {
       backdrop_path_lst: [],

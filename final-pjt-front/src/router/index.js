@@ -7,6 +7,7 @@ import ArticleFormView from '../views/Community/ArticleFormView.vue'
 import ArticleDetailView from '../views/Community/ArticleDetailView.vue'
 import ArticleEditView from '../views/Community/ArticleEditView.vue'
 import MainView from '../views/Movie/MainView.vue'
+import MovieDetailView from '../views/Movie/MovieDetailView'
 
 
 Vue.use(VueRouter)
@@ -17,6 +18,11 @@ const routes = [
     name: 'MainView',
     component: MainView,
   },
+  {
+    path: '/movie_detail',
+    name: 'MovieDetailView',
+    component: MovieDetailView,
+  }, 
   {
     path: '/signup',
     name: 'SignUpView',
