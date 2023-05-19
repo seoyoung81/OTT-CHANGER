@@ -1,0 +1,38 @@
+[
+  {
+    "model": "movies.provider",
+    "pk": 356,
+    "fields":{
+      "name": "웨이브"
+    }     
+  },
+  {
+    "model": "movies.provider",
+    "pk": 97,
+    "fields":{
+      "name": "왓챠"
+    }     
+  },
+  {
+    "model": "movies.provider",
+    "pk": 33,
+    "fields":{
+      "name": "티빙"
+    }     
+  },
+  {
+    "model": "movies.provider",
+    "pk": 8,
+    "fields":{
+      "name": "넷플릭스"
+    }     
+  },
+  {
+    "model": "movies.provider",
+    "pk": 337,
+    "fields":{
+      "name": "디즈니 플러스"
+    }     
+  }
+  
+]

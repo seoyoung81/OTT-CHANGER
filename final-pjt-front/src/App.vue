@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-dark bg-gradient">
+  <div id="app">
     <nav>
       <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/login" >Log In</router-link> |
@@ -26,7 +26,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #ffffff;
+  color: #000000;
 }
 
 nav {

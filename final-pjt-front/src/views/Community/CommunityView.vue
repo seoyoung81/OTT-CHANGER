@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>Community</h1>
+    <router-link to="/create"><button type="button" class="btn btn-outline-primary">글쓰기</button></router-link>
     <ArticleList/>
     <span class="bottom-0 end-0">
-      <router-link to="/create"><button type="button" class="btn btn-outline-light">글쓰기</button></router-link>
     </span>
     <router-view/>
   </div>
