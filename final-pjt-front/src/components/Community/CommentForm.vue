@@ -1,10 +1,11 @@
 <template>
   <div>
+    <br>
     <h1>댓글 작성</h1>
     <form @submit.prevent="createComment">
-      <label for="content">내용 : </label>
+      <label for="content"></label>
       <textarea id="content" cols="30" v-model="content"></textarea><br>
-      <input type="submit" id="submit">
+      <button type="submit" id="submit" class="btn btn-outline-primary">댓글 쓰기</button>
     </form>
   </div>
 </template>

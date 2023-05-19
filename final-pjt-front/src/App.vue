@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/signup">Sign Up</router-link> |
-      <router-link to="/login" >Log In</router-link> |
+      <router-link to="/main">Main</router-link> | 
+      <router-link to="/signup">Sign Up</router-link> | 
+      <router-link to="/login" >|  Log In</router-link> |
       <!-- v-if="!`${this.$store.getters.isLogin}`" -->
       <router-link to="/community">Community</router-link>
+      <!-- <button v-if="$store.state.isLogin" @click="logOut">로그아웃</button> -->
     </nav>
     <router-view/>
    
@@ -16,7 +18,19 @@ export default {
     name: 'IntroView',
     components: {
       
+    },
+    methods: {
+      logOut(){
+        console.log('일단')
+        this.$store.state.isLogin = false
+        this.$router.go(0)
+       
+      },
+      toMain(){
+        this.$router.push({name:'MainView'})
+      },
     }
+
 }
 </script>
 

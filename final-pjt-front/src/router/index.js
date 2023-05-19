@@ -6,11 +6,17 @@ import CommunityView from '../views/Community/CommunityView.vue'
 import ArticleFormView from '../views/Community/ArticleFormView.vue'
 import ArticleDetailView from '../views/Community/ArticleDetailView.vue'
 import ArticleEditView from '../views/Community/ArticleEditView.vue'
+import MainView from '../views/Movie/MainView.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/main',
+    name: 'MainView',
+    component: MainView,
+  },
   {
     path: '/signup',
     name: 'SignUpView',
@@ -40,7 +46,7 @@ const routes = [
     path: '/edit',
     name: 'ArticleEditView',
     component: ArticleEditView,
-  },
+  }, 
 ]
 
 const router = new VueRouter({

@@ -2,7 +2,7 @@
   <div>
     
     <p><span>{{ idx + 1 }}    </span>{{ comment.content }}</p>
-    <button @click="deleteComment">삭제하기</button>
+    <button @click="deleteComment" class="btn btn-outline-success">삭제하기</button>
     
     <hr>
   </div>
