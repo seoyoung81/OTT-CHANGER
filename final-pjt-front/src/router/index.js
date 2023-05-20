@@ -8,7 +8,9 @@ import ArticleDetailView from '../views/Community/ArticleDetailView.vue'
 import ArticleEditView from '../views/Community/ArticleEditView.vue'
 import MainView from '../views/Movie/MainView.vue'
 import MovieDetailView from '../views/Movie/MovieDetailView'
-
+import OttChangerView from '../views/OTT/OttChangerView'
+import RecommendFromCurrentOttView from '../views/OTT/RecommendFromCurrentOttView'
+import MovieSelectView from '../views/OttChanger/MovieSelectView'
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,22 @@ const routes = [
     name: 'CommunityView',
     component: CommunityView
   },
+  {
+    path: '/ott',
+    name: 'OttChangerView',
+    component: OttChangerView,
+  }, 
+  {
+    path: '/ott/recommend',
+    name: 'RecommendFromCurrentOttView',
+    component: RecommendFromCurrentOttView,
+  }, 
+  {
+    path: '/movieselector',
+    name: 'MovieSelectView',
+    component: MovieSelectView,
+  }, 
+
   {
     path: '/create',
     name: 'ArticleFormView',

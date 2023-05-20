@@ -2,8 +2,9 @@
   <div>
     <h1>Main Page</h1>
       <div>
+        <!-- <div class="product-img" :style="`background-image:url(${imageUrl}) `" /> -->
       <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
-      <img :src="poster_path_src" style="width:500px; height:100p">
+      <img :src="poster_path_src" style="width:500px;">
     </div>
     <h1>최신영화</h1>
     <NowPlayingList/><hr>

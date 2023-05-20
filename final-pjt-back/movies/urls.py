@@ -9,5 +9,6 @@ urlpatterns = [
     path('movies/', views.movie_list),
     # 장르 기반 추천 알고리즘 (장르 유사도)
     path('recommend_genre/', views.recommend_genre),
+    path('movie_select/', views.movie_select),
     
 ]

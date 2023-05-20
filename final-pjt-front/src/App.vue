@@ -5,8 +5,10 @@
       <router-link to="/signup">Sign Up</router-link> | 
       <router-link to="/login" >|  Log In</router-link> |
       <!-- v-if="!`${this.$store.getters.isLogin}`" -->
-      <router-link to="/community">Community</router-link>
+      <router-link to="/community">Community</router-link> |
       <!-- <button v-if="$store.state.isLogin" @click="logOut">로그아웃</button> -->
+      <router-link to="/ott">OTT Changer</router-link>
+
     </nav>
     <router-view/>
    

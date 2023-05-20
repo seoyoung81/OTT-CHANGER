@@ -20,7 +20,7 @@ class Movie(models.Model):
     vote_count = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre)
-    providers = models.ManyToManyField(Provider)
+    providers = models.ManyToManyField(Provider, related_name='providers')
 
 
 # class Review(models.Model):

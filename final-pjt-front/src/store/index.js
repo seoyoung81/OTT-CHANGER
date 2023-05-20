@@ -4,6 +4,7 @@ import axios from 'axios'
 import router from '../router'
 import createPersistedState from 'vuex-persistedstate'
 
+
 const API_URL = 'http://127.0.0.1:8000'
 
 Vue.use(Vuex)
@@ -23,7 +24,9 @@ export default new Vuex.Store({
       username: null,
       email: null,
     },
-    
+    selected_lst: [
+
+    ],
   },
   getters: {
     isLogin(state) {
@@ -56,6 +59,37 @@ export default new Vuex.Store({
       state.user.email = userinfo.email
       console.log('잘 들어왔는지 확인', state.user)
     },
+    SELECT_MOVIE(state, payload) {
+      let cnt = 0
+      // state.selected_lst = []
+      if (state.selected_lst.length === 0) {
+        state.selected_lst.push(payload)
+      }
+      else if (state.selected_lst.length >= 15) {
+        state.selected_lst = []
+        alert('15개까지만 선택가능합니다')
+
+      } else if (state.selected_lst.length >= 1) {
+        // for 문 돌기
+        for (let element of state.selected_lst) {
+          // console.log(element)
+          if (element.idx === payload.idx ) {
+            console.log('element', element.idx)
+            console.log('payload', payload.idx)
+            state.selected_lst.pop(element)
+            cnt ++
+          } 
+
+        }}
+        if (cnt === 0) {
+          state.selected_lst.push(payload)
+        }
+        console.log(state.selected_lst)
+      } 
+     
+      
+      
+    
     
   },
   actions: {
@@ -158,6 +192,10 @@ export default new Vuex.Store({
       .catch((error) => 
         console.log(error))
     },
+    selectMovie(context, payload) {
+      console.log('actions', payload)
+      context.commit('SELECT_MOVIE', payload)
+    }
   },
   
   modules: {
