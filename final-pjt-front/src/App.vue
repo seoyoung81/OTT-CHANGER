@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-dark bg-gradient">
     <nav>
       <router-link to="/main">Main</router-link> | 
       <router-link to="/signup">Sign Up</router-link> | 
@@ -8,7 +8,7 @@
       <router-link to="/community">Community</router-link> |
       <!-- <button v-if="$store.state.isLogin" @click="logOut">로그아웃</button> -->
       <router-link to="/ott">OTT Changer</router-link>
-
+      <br><br>
     </nav>
     <router-view/>
    
@@ -20,6 +20,11 @@ export default {
     name: 'IntroView',
     components: {
       
+    },
+    data() {
+      return {
+        searchMovie: null
+      }
     },
     methods: {
       logOut(){
@@ -42,7 +47,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #000000;
+  color: #ffffff;
 }
 
 nav {

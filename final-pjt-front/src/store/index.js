@@ -27,11 +27,22 @@ export default new Vuex.Store({
     selected_lst: [
 
     ],
+    calculateObj: {
+      netflix: 0,
+      tving: 0,
+      dplus: 0,
+      wavve: 0,
+      watcha: 0,
+
+    },
+    resultOTT: null
+    
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
+    
   },
   mutations: {
     GET_ARTICLES(state, articles) {
@@ -63,10 +74,9 @@ export default new Vuex.Store({
       let cnt = 0
       // state.selected_lst = []
       if (state.selected_lst.length === 0) {
-        state.selected_lst.push(payload)
+        // state.selected_lst.push(payload)
       }
       else if (state.selected_lst.length >= 15) {
-        state.selected_lst = []
         alert('15개까지만 선택가능합니다')
 
       } else if (state.selected_lst.length >= 1) {
@@ -74,18 +84,60 @@ export default new Vuex.Store({
         for (let element of state.selected_lst) {
           // console.log(element)
           if (element.idx === payload.idx ) {
-            console.log('element', element.idx)
-            console.log('payload', payload.idx)
+            // console.log('element', element.idx)
+            // console.log('payload', payload.idx)
             state.selected_lst.pop(element)
             cnt ++
           } 
 
         }}
-        if (cnt === 0) {
+        if (cnt === 0 && state.selected_lst.length < 15) {
           state.selected_lst.push(payload)
         }
         console.log(state.selected_lst)
-      } 
+
+      },
+      CALCULATE_RESULT(state) {
+        state.calculateObj.netflix = 0
+        state.calculateObj.tving = 0
+        state.calculateObj.watcha = 0
+        state.calculateObj.dplus = 0
+        state.calculateObj.wavve = 0
+        for (let element of state.selected_lst) {
+          // console.log(element)
+          for ( let p of element.providers) {
+            // console.log(p)
+            if (p === 8) {
+              state.calculateObj.netflix ++
+            } else if (p === 33) {
+              state.calculateObj.tving ++
+            } else if (p === 97) {
+              state.calculateObj.watcha ++
+            } else if (p === 337) {
+              state.calculateObj.dplus ++
+            } else if (p === 356) {
+              state.calculateObj.wavve ++
+            } 
+          }
+        }
+        // console.log(state.selected_lst)
+        console.log(state.calculateObj)
+        
+        // const resultOTT = Math.max(...Object.values(state.calculateObj))
+        let resultOTT = [null, -Infinity]
+        for (const [key, value] of Object.entries(state.calculateObj))  {
+          if (value > resultOTT[1]) {
+            resultOTT = [key, value]
+          }
+        }  
+        // console.log(resultOTT[0])
+        state.resultOTT = resultOTT[0]
+        console.log(state.resultOTT )
+       
+      },
+      RESET_LST(state) {
+        state.selected_lst = []
+      }
      
       
       
@@ -193,8 +245,14 @@ export default new Vuex.Store({
         console.log(error))
     },
     selectMovie(context, payload) {
-      console.log('actions', payload)
+      // console.log('actions', payload)
       context.commit('SELECT_MOVIE', payload)
+    },
+    calculateResult(context) {
+      context.commit('CALCULATE_RESULT')
+    },
+    resetLst(context) {
+      context.commit('RESET_LST')
     }
   },
   

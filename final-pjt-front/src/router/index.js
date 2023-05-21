@@ -9,8 +9,10 @@ import ArticleEditView from '../views/Community/ArticleEditView.vue'
 import MainView from '../views/Movie/MainView.vue'
 import MovieDetailView from '../views/Movie/MovieDetailView'
 import OttChangerView from '../views/OTT/OttChangerView'
+import SearchMovieView from '../views/Movie/SearchMovieView'
 import RecommendFromCurrentOttView from '../views/OTT/RecommendFromCurrentOttView'
 import MovieSelectView from '../views/OttChanger/MovieSelectView'
+import OttResultView from '../views/OttChanger/OttResultView'
 
 Vue.use(VueRouter)
 
@@ -44,6 +46,11 @@ const routes = [
     path: '/ott',
     name: 'OttChangerView',
     component: OttChangerView,
+  },
+  {
+    path: '/searchmovie',
+    name: 'SearchMovieView',
+    component: SearchMovieView,
   }, 
   {
     path: '/ott/recommend',
@@ -51,9 +58,14 @@ const routes = [
     component: RecommendFromCurrentOttView,
   }, 
   {
-    path: '/movieselector',
+    path: '/movieselect',
     name: 'MovieSelectView',
     component: MovieSelectView,
+  }, 
+  {
+    path: '/ottresult',
+    name: 'OttResultView',
+    component: OttResultView,
   }, 
 
   {

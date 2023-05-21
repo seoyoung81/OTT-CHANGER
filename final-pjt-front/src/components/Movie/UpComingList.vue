@@ -1,9 +1,10 @@
 <template>
-    <div class="d-flex">
-        <UpComingItem
+  <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
+    <UpComingItem
         v-for="(movie, idx) in upcoming_lst"
         :key="idx"
         :movie="movie"
+        class="UpComingItem"
         />
     </div>
   </template>
@@ -45,5 +46,17 @@
   </script>
   
   <style>
+  .dis-flex {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .UpComingItem {
+    flex-shrink: 0;
+    width: 100px;
+    height: 200px;
+    margin-right: 10px;
+  }
   
   </style>

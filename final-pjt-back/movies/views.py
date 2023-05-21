@@ -71,4 +71,18 @@ def movie_select(request):
     return Response(serializer.data)
     
 
+@api_view(['GET', 'POST'])
+def movie_search(request):
+    movies = get_list_or_404(Movie)
+    keyword = request.data['keyword']
+    print('>>>>>>>>>>>>.')
+    print(keyword)
+    for movie in movies:
+        if movie.title == keyword:
+            result = movie
+            break
+    print(result)
+
+    serializer = MovieListSerializer(result)
+    return Response(serializer.data)
 

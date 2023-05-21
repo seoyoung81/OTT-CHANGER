@@ -1,7 +1,7 @@
 <template>
   <div>
     <img :src="poster_src"
-    style="height:300px;"
+    :style="{ height: '300px', filter: grayscale ? 'grayscale(100%)' : 'none' }"
     @click="selectMovie"
     >    
   </div>
@@ -17,6 +17,7 @@ export default {
     data() {
         return {
             poster_src: 'https://image.tmdb.org/t/p/original/',
+            grayscale: false,
         }
     },
     created(){
@@ -31,7 +32,9 @@ export default {
             }
             // console.log(payload)
             this.$store.dispatch('selectMovie', payload)
-        }
+            this.grayscale = !this.grayscale
+        },
+        
     }  
 }
 </script>

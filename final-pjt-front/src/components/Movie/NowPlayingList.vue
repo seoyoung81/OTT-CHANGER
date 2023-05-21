@@ -1,9 +1,10 @@
 <template>
-    <div class="d-flex">
+    <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
         <NowPlayingItem
         v-for="(movie, idx) in nowplaying_lst"
         :key="idx"
         :movie="movie"
+        class="NowPlayingItem"
         />
     </div>
   </template>
@@ -51,5 +52,17 @@
   </script>
   
   <style>
+  .dis-flex {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .NowPlayingItem {
+    flex-shrink: 0;
+    width: 100px;
+    height: 200px;
+    margin-right: 10px;
+  }
   
   </style>

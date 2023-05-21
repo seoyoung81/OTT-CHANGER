@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <h1>Main Page</h1>
-      <div>
-        <!-- <div class="product-img" :style="`background-image:url(${imageUrl}) `" /> -->
-      <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
-      <img :src="poster_path_src" style="width:500px;">
+  <div class="main-container">
+    <input type="text" v-model="keyword" @keyup.enter="goSearch">
+    <button @click="goSearch">검색</button>
+      <div style="position: relative;" class="container">
+      <img :src="backdrop_path_src" class="backdrop-image">
+      <img :src="poster_path_src" style="width:450px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;">
     </div>
     <h1>최신영화</h1>
-    <NowPlayingList/><hr>
+    <NowPlayingList/>
     <h1>인기영화</h1>
-    <PopularList/><hr>
+    <PopularList/>
     <h1>개봉예정</h1>
-    <UpComingList/><hr>
+    <UpComingList/>
     <h1>Top 20</h1>
     <TopRatedList/>
   </div>
@@ -38,7 +38,8 @@ export default {
       backdrop_path_lst: [],
       backdrop_path_src: 'https://image.tmdb.org/t/p/original/',
       poster_path_lst: [],
-      poster_path_src: 'https://image.tmdb.org/t/p/original/'
+      poster_path_src: 'https://image.tmdb.org/t/p/original/',
+      keyword: null,
     }
   },
   created() {
@@ -69,10 +70,36 @@ export default {
     .catch((error) =>{
       console.log(error)
     })
+  },
+  methods: {
+    goSearch() {
+        this.$router.push({name: 'SearchMovieView', params: { keyword: this.keyword}})
+      }
   }
 }
 </script>
 
 <style>
+/*
+  style="width: 100%; height: auto; opacity: 60%; z-index: 1;"
+*/
+.main-container {
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.backdrop-image {
+  width: 180%;
+  height: auto;
+  opacity: 60%;
+  z-index: 1;
+  object-fit: cover;
+}
 
 </style>

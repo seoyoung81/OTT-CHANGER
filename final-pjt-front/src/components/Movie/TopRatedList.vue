@@ -1,9 +1,10 @@
 <template>
-    <div class="d-flex">
-        <TopRatedItem
+  <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
+    <TopRatedItem
         v-for="(movie, idx) in toprated_lst"
         :key="idx"
         :movie="movie"
+        class="TopRatedItem"
         />
     </div>
   </template>
@@ -48,5 +49,16 @@
   </script>
   
   <style>
+  .dis-flex {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+  }
   
+  .TopRatedItem {
+    flex-shrink: 0;
+    width: 100px;
+    height: 200px;
+    margin-right: 10px;
+  }
   </style>

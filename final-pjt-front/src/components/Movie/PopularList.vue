@@ -1,9 +1,10 @@
 <template>
-  <div class="d-flex">
-      <PopularItem
+  <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
+    <PopularItem
       v-for="(movie, idx) in popular_lst"
       :key="idx"
       :movie="movie"
+      class="PopularItem"
       />
   </div>
 </template>
@@ -48,5 +49,17 @@ export default {
 </script>
 
 <style>
+.dis-flex {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.PopularItem {
+  flex-shrink: 0;
+  width: 100px;
+  height: 200px;
+  margin-right: 10px;
+}
 
 </style>

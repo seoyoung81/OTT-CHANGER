@@ -1,11 +1,14 @@
 <template>
   <div>
     <h1>보고 싶은 영화를 선택해주세요</h1>
-    <MovieSelectList
-    v-for="(movie, idx) in random_movie_lst"
-    :key="idx"
-    :idx="idx"
-    :movie="movie"/>
+    <div class="d-flex">
+      <MovieSelectList
+      v-for="(movie, idx) in random_movie_lst"
+      :key="idx"
+      :idx="idx"
+      :movie="movie"/>
+    </div>
+    <button @click="goResult">결과 보기</button>
   </div>
 </template>
 
@@ -36,6 +39,17 @@ export default {
       .catch((error) => {
         console.log(error)
       })
+      this.$store.dispatch('resetLst')
+
+    },
+    methods: {
+      goResult() {
+        if (this.$store.state.selected_lst.length < 10) {
+          alert('10개 이상 선택해주세요')
+        } else (
+          this.$router.push({name: 'OttResultView'})
+        )
+      }
     }
 }
 </script>
