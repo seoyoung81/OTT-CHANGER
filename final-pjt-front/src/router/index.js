@@ -10,6 +10,7 @@ import MainView from '../views/Movie/MainView.vue'
 import MovieDetailView from '../views/Movie/MovieDetailView'
 import OttChangerView from '../views/OTT/OttChangerView'
 import SearchMovieView from '../views/Movie/SearchMovieView'
+import SearchDetailView from '../views/Movie/SearchDetailView'
 import RecommendFromCurrentOttView from '../views/OTT/RecommendFromCurrentOttView'
 import MovieSelectView from '../views/OttChanger/MovieSelectView'
 import OttResultView from '../views/OttChanger/OttResultView'
@@ -51,6 +52,11 @@ const routes = [
     path: '/searchmovie',
     name: 'SearchMovieView',
     component: SearchMovieView,
+  },
+  {
+    path: '/search_detail',
+    name: 'SearchDetailView',
+    component: SearchDetailView,
   }, 
   {
     path: '/ott/recommend',

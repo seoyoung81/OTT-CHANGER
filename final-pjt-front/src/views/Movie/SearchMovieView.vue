@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ result.title }}</p>
+    <p>{{ movie.title }}</p>
     <img
     :src="poster_src"
     style="height: 300px"
@@ -37,7 +37,7 @@ export default {
     name: 'SearchMovieView',
     data() {
         return {
-            result: null,
+            movie: null,
             poster_src: 'https://image.tmdb.org/t/p/original/',
             netflix: false,
             wavve: false,
@@ -56,23 +56,23 @@ export default {
         })
         .then((response) => {
             console.log(response.data)
-            this.result = response.data
-            this.poster_src = this.poster_src + `${this.result.poster_path}`
-            console.log(this.result.providers)
+            this.movie = response.data
+            this.poster_src = this.poster_src + `${this.movie.poster_path}`
+            console.log(this.movie.providers)
             // ott 화면에 띄우기
-            if (this.result.providers.includes(8)) {
+            if (this.movie.providers.includes(8)) {
                 this.netflix = true
             } 
-            if (this.result.providers.includes(33)) {
+            if (this.movie.providers.includes(33)) {
                 this.tving = true
             } 
-            if (this.result.providers.includes(97)) {
+            if (this.movie.providers.includes(97)) {
                 this.watcha = true
             } 
-            if (this.result.providers.includes(337)) {
+            if (this.movie.providers.includes(337)) {
                 this.dplus = true
             } 
-            if (this.result.providers.includes(356)) {
+            if (this.movie.providers.includes(356)) {
                 this.wavve = true
             }
         })
@@ -84,9 +84,9 @@ export default {
     methods: {
         getMovieDetail(){
             this.$router.push({
-                path: '/movie_detail',
+                path: '/search_detail',
                 query: {
-                    data: JSON.stringify(this.result)
+                    data: JSON.stringify(this.movie)
                 }
             })
         }
