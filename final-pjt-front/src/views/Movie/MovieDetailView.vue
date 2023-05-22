@@ -7,6 +7,8 @@
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
     <p>영화 내용: {{ movie.overview}}</p>
+    <button @click="movieLike">좋아요!</button>
+    <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
   </div>
 </template>
 
@@ -22,7 +24,9 @@ export default {
             videoSrc: "https://www.youtube.com/embed/",
             autoplay: "?autoplay=1&mute=1",
             backdrop_path_src: 'https://image.tmdb.org/t/p/original/',
-            poster_path_src: 'https://image.tmdb.org/t/p/original/'
+            poster_path_src: 'https://image.tmdb.org/t/p/original/',
+            likes_count: 0,
+            isLiked: false,
         }
     },
     created() {
@@ -61,10 +65,34 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
-        
-
-        
-
+    },
+    methods: {
+        movieLike() {
+            const like_movie = this.movie
+            const user_pk = this.$store.state.user.id
+            console.log('좋아요 누른 영화 정보', like_movie)
+            console.log('좋아요 누른 유저 id', user_pk)
+            // console.log(this.$store.state.token)
+            axios({
+                method: 'post',
+                url: 'http://127.0.0.1:8000/api/v1/movie_like/',
+                data: { like_movie, user_pk }
+            })
+            .then((response) => {
+                // console.log(response)
+                this.likes_count = response.data.like_users_count
+                const like_users = response.data.like_users
+                console.log('전', this.isLiked)
+                for (let element of like_users) {
+                    // console.log(element)
+                    // console.log(this.$store.state.user.id)
+                    if ( this.$store.state.user.id === element.id) {
+                        this.isLiked = !this.isLiked
+                        console.log('후', this.isLiked)
+                    }
+                }
+            })
+        }
     }
 
 }

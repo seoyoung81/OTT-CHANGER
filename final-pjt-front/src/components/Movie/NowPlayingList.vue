@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
         <NowPlayingItem
         v-for="(movie, idx) in nowplaying_lst"
@@ -7,6 +8,7 @@
         class="NowPlayingItem"
         />
     </div>
+  </div>
   </template>
   
   <script>
@@ -58,6 +60,19 @@
     scroll-behavior: smooth;
   }
   
+  .dis-flex::-webkit-scrollbar {
+  width: 5px; /* Width of the vertical scrollbar */
+  background-color: transparent; /* Hide the scrollbar background */
+  }
+
+.dis-flex::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Scrollbar thumb color */
+  }
+
+.dis-flex::-webkit-scrollbar-track {
+  background-color: transparent; /* Hide the scrollbar track background */
+  }
+
   .NowPlayingItem {
     flex-shrink: 0;
     width: 100px;

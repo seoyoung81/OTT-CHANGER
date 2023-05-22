@@ -1,9 +1,9 @@
 <template>
-  <div id="app" class="bg-dark bg-gradient">
+  <div id="app">
     <nav>
       <router-link to="/main">Main</router-link> | 
       <router-link to="/signup">Sign Up</router-link> | 
-      <router-link to="/login" >|  Log In</router-link> |
+      <router-link to="/login" >Log In</router-link> |
       <!-- v-if="!`${this.$store.getters.isLogin}`" -->
       <router-link to="/community">Community</router-link> |
       <!-- <button v-if="$store.state.isLogin" @click="logOut">로그아웃</button> -->
@@ -56,12 +56,19 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #2a73ac;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(51, 51, 51);
+}
+
 
 
 </style>

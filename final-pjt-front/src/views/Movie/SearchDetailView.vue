@@ -7,6 +7,7 @@
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
     <p>영화 내용: {{ movie.overview}}</p>
+    <button @click="movieLike">좋아요!</button>
   </div>
 </template>
 
@@ -61,10 +62,23 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
-        
-
-        
-
+    },
+    methods: {
+        movieLike() {
+            const like_movie = this.movie
+            const user_pk = this.$store.state.user.id
+            console.log('좋아요 누른 영화 정보', like_movie)
+            console.log('좋아요 누른 유저 id', user_pk)
+            // console.log(this.$store.state.token)
+            axios({
+                method: 'post',
+                url: 'http://127.0.0.1:8000/api/v1/movie_like/',
+                data: { like_movie, user_pk }
+            })
+            .then((response) => {
+                console.log(response)
+            })
+        }
     }
 
 }

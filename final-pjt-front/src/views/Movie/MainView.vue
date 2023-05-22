@@ -1,11 +1,26 @@
 <template>
   <div class="main-container">
-    <input type="text" v-model="keyword" @keyup.enter="goSearch">
-    <button @click="goSearch">검색</button>
-      <div style="position: relative;" class="container">
+    <!-- 검색창 -->
+    <div class="search-container">
+      <input type="text" 
+        v-model="keyword" 
+        @keyup.enter="goSearch" 
+        class="search-input" 
+        placeholder="검색어를 입력하세요"
+        >
+      <button 
+        @click="goSearch" 
+        class="search-button">
+      검색
+      </button>
+    </div>
+    <!-- 백드롭&포스터 -->
+    <div style="position: relative;" class="container">
       <img :src="backdrop_path_src" class="backdrop-image">
       <img :src="poster_path_src" style="width:450px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;">
     </div>
+
+    <!-- 영화 정보 제공 -->
     <h1>최신영화</h1>
     <NowPlayingList/>
     <h1>인기영화</h1>
@@ -43,6 +58,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('getUserInfo')
     axios({
       method: 'get',
       url: 'https://api.themoviedb.org/3/movie/now_playing',
@@ -80,12 +96,41 @@ export default {
 </script>
 
 <style>
-/*
-  style="width: 100%; height: auto; opacity: 60%; z-index: 1;"
-*/
-.main-container {
-  justify-content: center;
+.search-container {
+  position: relative;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  /* 둥근 테두리 */
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.search-input {
+  display: inline;
+  border: none !important;;
+  outline: none;
+  padding: 0 0 0 5px !important;
+  margin: 0 !important;
+  font-size: 16px;
+  color: white;
+  background-color: transparent; /* 추가: 배경색 투명하게 설정 */
+
+}
+
+.main-container {
+  text-align: center;
+
+}
+.backdrop-image {
+  width: 180%;
+  height: auto;
+  opacity: 60%;
+  z-index: 1;
+  object-fit: cover;
 }
 .container {
   display: flex;
@@ -94,12 +139,24 @@ export default {
   height: 100vh;
 }
 
-.backdrop-image {
-  width: 180%;
-  height: auto;
-  opacity: 60%;
-  z-index: 1;
-  object-fit: cover;
+
+
+
+
+.search-button {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: #5b8dc22f;
+  color: #fff;
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 0 20px 20px 0; /* 추가: 버튼 모서리 둥글게 조정 */
+  /* padding: 8px 12px; */
+  cursor: pointer;
 }
 
+.search-button:hover {
+  background-color: #265f9c;
+}
 </style>

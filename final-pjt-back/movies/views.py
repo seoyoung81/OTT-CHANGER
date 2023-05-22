@@ -1,11 +1,13 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, get_list_or_404
 import random
 
 from .models import Genre, Provider, Movie
-from .serializers import ProviderList, GenreList, MovieListSerializer, MovieDetailProviderSerializer, MovieDetailGenreSerializer
+from accounts.models import User
+from .serializers import ProviderList, GenreList, MovieListSerializer, MovieDetailProviderSerializer, MovieDetailGenreSerializer, MovieLikeUsers
 
 
 @api_view(['GET'])
@@ -75,14 +77,82 @@ def movie_select(request):
 def movie_search(request):
     movies = get_list_or_404(Movie)
     keyword = request.data['keyword']
-    print('>>>>>>>>>>>>.')
-    print(keyword)
+    # print('>>>>>>>>>>>>.')
+    # print(keyword)
     for movie in movies:
         if movie.title == keyword:
             result = movie
             break
-    print(result)
+    # print(result)
 
     serializer = MovieListSerializer(result)
     return Response(serializer.data)
 
+
+@api_view(['GET', 'POST'])
+def movie_like(request):
+    print('11111111111111111')
+    like_movie = request.data['like_movie']
+    like_user = User.objects.get(pk=request.data['user_pk'])
+    movies = Movie.objects.all()
+    try:
+        print('222222222222222222')
+        movie = Movie.objects.get(id=like_movie['id'])
+    except:
+        print('333333333333333333')
+        movie = Movie()
+        movie.m_id = len(movies) + 1
+        movie.id = like_movie['id']
+        movie.title = like_movie['title']
+        movie.overview = like_movie['overview']
+        movie.poster_path = like_movie['poster_path']
+        movie.release_date = like_movie['release_date']
+        movie.backdrop_path = like_movie['backdrop_path']
+        movie.popularity = like_movie['popularity']
+        movie.vote_count = like_movie['vote_count']
+        movie.vote_average = like_movie['vote_average']
+        print(movie)
+        print(like_movie['genre_ids'])
+        # movie.genres = list(like_movie['genre_ids'])
+        # print(movie)
+        movie.save()
+        print(movie)
+        
+        # Get Genre objects based on genre_ids
+        genre_ids = like_movie['genre_ids']
+        genres = Genre.objects.filter(pk__in=genre_ids)
+
+        # Clear existing genres and add new ones
+        movie.genres.clear()
+        movie.genres.add(*genres)
+
+    finally:
+        if movie.like_users.filter(pk=like_user.pk).exists():
+            movie.like_users.remove(like_user.pk)
+        else:
+            movie.like_users.add(like_user.pk)
+
+    serializer = MovieLikeUsers(movie)
+    # print(serializer.data)   
+    return Response(serializer.data)
+        
+    
+    
+    
+   
+
+@api_view(['GET'])
+def movie_detail(request, movie_pk):
+# print('>>>>>>>>>>>>>>>.')
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = MovieLikeUsers(movie)
+    return Response(serializer.data)
+
+   
+   
+   
+   
+   
+   
+   
+   

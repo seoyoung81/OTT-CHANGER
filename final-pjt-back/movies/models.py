@@ -11,17 +11,19 @@ class Provider(models.Model):
 
 
 class Movie(models.Model):
-    movie_id = models.IntegerField()
+    m_id = models.BigAutoField(primary_key=True)
+    id = models.IntegerField()
     title = models.CharField(max_length=100)
     overview = models.TextField()
-    release_date = models.DateField()
     poster_path = models.TextField()
+    release_date = models.DateField()
     backdrop_path = models.TextField()
     popularity = models.FloatField()
     vote_count = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre)
     providers = models.ManyToManyField(Provider, related_name='providers')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
 
 
 # class Review(models.Model):

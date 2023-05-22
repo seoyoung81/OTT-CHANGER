@@ -61,7 +61,7 @@ export default new Vuex.Store({
     SAVE_TOKEN_LOGIN(state, token) {
       // console.log(token)
       state.token = token
-      router.push({name: 'CommunityView'})
+      router.push({name: 'MainView'})
       // 일단 홈으로 -> 메인페이지로 보낼 것
     },
     GET_USER_INFO(state, userinfo) {
@@ -239,6 +239,7 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
+        console.log(response)
         context.commit('SAVE_TOKEN_LOGIN', response.data.key)
       })
       .catch((error) => 
