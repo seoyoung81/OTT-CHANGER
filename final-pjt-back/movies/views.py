@@ -88,7 +88,7 @@ def movie_search(request):
     serializer = MovieListSerializer(result)
     return Response(serializer.data)
 
-
+# 영화 좋아요
 @api_view(['GET', 'POST'])
 def movie_like(request):
     print('11111111111111111')
@@ -136,10 +136,7 @@ def movie_like(request):
     # print(serializer.data)   
     return Response(serializer.data)
         
-    
-    
-    
-   
+ 
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
@@ -149,6 +146,19 @@ def movie_detail(request, movie_pk):
     return Response(serializer.data)
 
    
+# 내가 좋아요한 영화 조회
+@api_view(['GET'])
+def my_movie_likes(request, user_pk):
+    like_lst = []
+    movies = get_list_or_404(Movie)
+    print(user_pk)
+    for movie in movies:
+        if movie.like_users.filter(pk=user_pk).exists():
+            like_lst.append(movie)
+
+    serializer = MovieListSerializer(like_lst, many=True)
+    return Response(serializer.data)
+
    
    
    

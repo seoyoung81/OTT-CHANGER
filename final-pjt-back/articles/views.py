@@ -108,3 +108,17 @@ def comment_create(request, article_pk):
     if serializer.is_valid(raise_exception=True):
         serializer.save(article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+# 내가 쓴 게시글 조회하기
+@api_view(['GET'])
+def user_articles(request, user_pk):
+    articles = get_list_or_404(Article)
+    my_articles = [article for article in articles if article.user_id == user_pk]
+    serializer = ArticleListSerializer(my_articles, many=True)
+    return Response(serializer.data)
+
+
+
+
+
+    

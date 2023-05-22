@@ -14,6 +14,7 @@ import SearchDetailView from '../views/Movie/SearchDetailView'
 import RecommendFromCurrentOttView from '../views/OTT/RecommendFromCurrentOttView'
 import MovieSelectView from '../views/OttChanger/MovieSelectView'
 import OttResultView from '../views/OttChanger/OttResultView'
+import MyPageView from '../views/MyPage/MyPageView'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ const routes = [
     path: '/community',
     name: 'CommunityView',
     component: CommunityView
+  },
+  {
+    path: '/mypage',
+    name: 'MyPageView',
+    component: MyPageView
   },
   {
     path: '/ott',
