@@ -1,10 +1,12 @@
 <template>
   <div>
-    
-    <p><span>{{ idx + 1 }}    </span>{{ comment.content }}</p>
-    <button @click="deleteComment" class="btn btn-outline-success">삭제하기</button>
-    
-    <hr>
+    <div class="comments-align">
+      <span><span>{{ idx + 1 }}&nbsp;&nbsp; &nbsp;</span>{{ comment.content }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="hover-effect-delete">
+        <img src="@/assets/delete.png" @click="deleteComment" style="width: 30px;">
+      </div>
+    </div>
+    <hr style="width: 80vw; margin-left: 10%;">
   </div>
 </template>
 
@@ -50,5 +52,20 @@ export default {
 </script>
 
 <style>
+.hover-effect-delete img {
+  width: 30px;
+  transition: filter 0.3s ease-in-out; /* Adding a smooth transition effect */
+}
+
+.hover-effect-delete img:hover {
+  filter: brightness(70%); /* Adjust the brightness value to change the color effect */
+}
+
+.comments-align {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
 
 </style>

@@ -1,11 +1,17 @@
 <template>
   <div>
     <h1>게시글 수정</h1>
-    <form @submit.prevent="updateArticle">
-      <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title"><br>
-      <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model="content"></textarea><br>
+    <form @submit.prevent="updateArticle" class="article-form-container">
+      
+      <div class="align-edit">
+        <label for="title">제목</label>
+        <input type="text" id="title" v-model.trim="title"><br>
+      </div>
+      
+      <div class="align-edit">
+        <label for="content">내용</label>
+        <textarea id="content" cols="66" rows="10" v-model="content"></textarea><br>
+      </div>
       <input type="submit" id="submit">
     </form>
   </div>
@@ -95,5 +101,8 @@ export default {
 </script>
 
 <style>
+.form-edit-container {
+  padding-top: 20px;
+}
 
 </style>

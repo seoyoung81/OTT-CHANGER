@@ -1,6 +1,6 @@
 <template>
   <div>
-    <br>
+    <br><br><br>
     <h1>Comment List</h1>
     <CommentItem
       v-for="(comment, idx) in comment_set"
