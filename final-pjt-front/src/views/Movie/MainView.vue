@@ -48,6 +48,11 @@ export default {
     UpComingList,
     TopRatedList
   },
+  computed:{
+    isLogin() {
+      return this.$store.getters.isLogin // 로그인 여부
+      }
+    },
   data() {
     return {
       backdrop_path_lst: [],
@@ -58,7 +63,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getUserInfo')
+    if (this.isLogin){
+      this.$store.dispatch('getUserInfo')
+    }
     axios({
       method: 'get',
       url: 'https://api.themoviedb.org/3/movie/now_playing',
@@ -80,7 +87,7 @@ export default {
       const idx = _.random(20)
       this.backdrop_path_src = this.backdrop_path_src + `${this.backdrop_path_lst[idx]}`
       this.poster_path_src = this.poster_path_src + `${this.poster_path_lst[idx]}`
-    console.log(this.backdrop_path_src)
+      // console.log(this.backdrop_path_src)
       // console.log(this.backdrop_path_lst)
     })
     .catch((error) =>{

@@ -29,7 +29,7 @@ export default {
     }
   },
   created(){
-    this.articleId = this.$route.query.articleId
+    this.articleId = this.$route.params.articleId
     this.getArticleDetail()
     // console.log(articleId)
   },
@@ -83,7 +83,7 @@ export default {
       })
       .then(() => {
         // console.log(response)
-        this.$router.push({name: 'ArticleDetailView', params: { id: this.articleId } })
+        this.$router.push({name: 'ArticleDetailView', params: { articleId: this.articleId } })
         console.log(this.content)
       })
       .catch((err) => {

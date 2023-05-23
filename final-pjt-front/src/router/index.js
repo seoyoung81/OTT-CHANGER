@@ -45,7 +45,7 @@ const routes = [
     component: CommunityView
   },
   {
-    path: '/mypage',
+    path: '/mypage/:id',
     name: 'MyPageView',
     component: MyPageView
   },
@@ -86,12 +86,12 @@ const routes = [
     component: ArticleFormView
   },
   {
-    path: '/:id',
+    path: '/:articleId',
     name: 'ArticleDetailView',
     component: ArticleDetailView,
   },
   {
-    path: '/edit',
+    path: '/edit/:articleId',
     name: 'ArticleEditView',
     component: ArticleEditView,
   }, 

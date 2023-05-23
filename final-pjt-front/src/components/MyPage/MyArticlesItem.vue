@@ -2,7 +2,7 @@
   <div class="align">
     <router-link :to="{
         name: 'ArticleDetailView',
-        params: {id: article.id }}"
+        params: {articleId: article.id }}"
         class="link"
         >
         {{ article.title }}

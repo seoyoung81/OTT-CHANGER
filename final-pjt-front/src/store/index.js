@@ -42,7 +42,6 @@ export default new Vuex.Store({
     isLogin(state) {
       return state.token ? true : false
     },
-    
   },
   mutations: {
     GET_ARTICLES(state, articles) {
@@ -64,11 +63,18 @@ export default new Vuex.Store({
       router.push({name: 'MainView'})
       // 일단 홈으로 -> 메인페이지로 보낼 것
     },
+    LOG_OUT(state) {
+      state.token = null
+      state.user.id = null
+      state.user.username = null
+      state.user.email = null
+      console.log(state.user)
+    },
     GET_USER_INFO(state, userinfo) {
       state.user.id = userinfo.pk
       state.user.username = userinfo.username
       state.user.email = userinfo.email
-      console.log('잘 들어왔는지 확인', state.user)
+      // console.log('잘 들어왔는지 확인', state.user)
     },
     SELECT_MOVIE(state, payload) {
       let cnt = 0
@@ -95,58 +101,51 @@ export default new Vuex.Store({
           state.selected_lst.push(payload)
         }
         console.log(state.selected_lst)
-
-      },
-      CALCULATE_RESULT(state) {
-        state.calculateObj.netflix = 0
-        state.calculateObj.tving = 0
-        state.calculateObj.watcha = 0
-        state.calculateObj.dplus = 0
-        state.calculateObj.wavve = 0
-        for (let element of state.selected_lst) {
-          // console.log(element)
-          for ( let p of element.providers) {
-            // console.log(p)
-            if (p === 8) {
-              state.calculateObj.netflix ++
-            } else if (p === 33) {
-              state.calculateObj.tving ++
-            } else if (p === 97) {
-              state.calculateObj.watcha ++
-            } else if (p === 337) {
-              state.calculateObj.dplus ++
-            } else if (p === 356) {
-              state.calculateObj.wavve ++
-            } 
-          }
+    },
+    CALCULATE_RESULT(state) {
+      state.calculateObj.netflix = 0
+      state.calculateObj.tving = 0
+      state.calculateObj.watcha = 0
+      state.calculateObj.dplus = 0
+      state.calculateObj.wavve = 0
+      for (let element of state.selected_lst) {
+        // console.log(element)
+        for ( let p of element.providers) {
+          // console.log(p)
+          if (p === 8) {
+            state.calculateObj.netflix ++
+          } else if (p === 33) {
+            state.calculateObj.tving ++
+          } else if (p === 97) {
+            state.calculateObj.watcha ++
+          } else if (p === 337) {
+            state.calculateObj.dplus ++
+          } else if (p === 356) {
+            state.calculateObj.wavve ++
+          } 
         }
-        // console.log(state.selected_lst)
-        console.log(state.calculateObj)
-        
-        // const resultOTT = Math.max(...Object.values(state.calculateObj))
-        let resultOTT = [null, -Infinity]
-        for (const [key, value] of Object.entries(state.calculateObj))  {
-          if (value > resultOTT[1]) {
-            resultOTT = [key, value]
-          }
-        }  
-        // console.log(resultOTT[0])
-        state.resultOTT = resultOTT[0]
-        console.log(state.resultOTT )
-       
-      },
-      RESET_LST(state) {
-        state.selected_lst = []
       }
-     
+      // console.log(state.selected_lst)
+      console.log(state.calculateObj)
       
-      
-    
-    
+      // const resultOTT = Math.max(...Object.values(state.calculateObj))
+      let resultOTT = [null, -Infinity]
+      for (const [key, value] of Object.entries(state.calculateObj))  {
+        if (value > resultOTT[1]) {
+          resultOTT = [key, value]
+        }
+      }  
+      // console.log(resultOTT[0])
+      state.resultOTT = resultOTT[0]
+      console.log(state.resultOTT )      
+    },
+    RESET_LST(state) {
+      state.selected_lst = []
+    }
   },
   actions: {
+    // 작성한 게시글 조회
     getArticles(context) {
-      // console.log('엑시오스 전 !@')
       axios({
         method: 'get',
         url: `${API_URL}/api/v1/articles/`,
@@ -155,9 +154,8 @@ export default new Vuex.Store({
         },
       })
         .then((response) => {
-          console.log('get Article response and context::::::::', response, context)
+          // console.log('get Article response and context::::::::', response, context)
           context.commit('GET_ARTICLES', response.data)
-          // console.log('실행!@')
         })
         .catch((error) => {
         console.log(error)
@@ -174,9 +172,9 @@ export default new Vuex.Store({
       })
       .then((response) => {
         // console.log()
-        console.log('응답 !!!!!!!!!!!!', response)
-        console.log('이름!!!!!!!!!!!', response.data.username)
-        console.log('PK!!!!!!!!!!!', response.data.pk)
+        // console.log('응답 !!!!!!!!!!!!', response)
+        // console.log('이름!!!!!!!!!!!', response.data.username)
+        // console.log('PK!!!!!!!!!!!', response.data.pk)
         context.commit('GET_USER_INFO', response.data)
       })
     },
@@ -225,7 +223,7 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    login(context, payload) {
+    logIn(context, payload) {
       const username = payload.username
       const password = payload.password
       // console.log(username)
@@ -244,6 +242,24 @@ export default new Vuex.Store({
       })
       .catch((error) => 
         console.log(error))
+    },
+    logOut(context) {
+      console.log('로그아웃 시도')
+      console.log(context.state.token)
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/logout/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+      .then((response) => {
+        console.log(response)
+        context.commit('LOG_OUT')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     },
     selectMovie(context, payload) {
       // console.log('actions', payload)

@@ -6,10 +6,13 @@
     <iframe :src="videoSrc" allowfullscreen></iframe>
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;"></p>
-    <p>영화 내용: {{ movie.overview}}</p>
     <button @click="movieLike">좋아요!</button>
-    <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
-  </div>
+        <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+
+    <p>영화 내용: {{ movie.overview}}</p>
+    </div>
+    
+  
 </template>
 
 <script>
@@ -99,7 +102,23 @@ export default {
 </script>
 
 <style>
+.main-container {
+  text-align: center;
 
-
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.backdrop-image {
+  width: 100%;
+  height: 100%;
+  opacity: 60%;
+  z-index: 1;
+  object-fit: cover;
+}
 
 </style>

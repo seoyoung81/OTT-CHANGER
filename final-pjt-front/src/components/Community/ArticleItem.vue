@@ -6,7 +6,7 @@
     <!-- 작성자 -->
     <router-link :to="{
       name: 'MyPageView',
-      params: {id: user }}"
+      params: { id: user_id }}"
       class="article-link">
       <p class="article-user">
         {{ article.username }}
@@ -16,7 +16,7 @@
     <!-- 게시글 -->
     <router-link :to="{
       name: 'ArticleDetailView',
-      params: {id: article.id }}"
+      params: { articleId: article_id }}"
       class="article-link">
       <span class="article-title">{{ article.title }}</span>
     </router-link>
@@ -29,8 +29,18 @@
 <script>
 export default {
   name: 'ArticleItem',
+  data() {
+    return {
+      article_id : null,
+      user_id : null,
+    }
+  },
   props: {
     article: Object,
+  },
+  created() {
+    this.article_id = this.article.id
+    this.user_id = this.article.user
   }
 }
 </script>

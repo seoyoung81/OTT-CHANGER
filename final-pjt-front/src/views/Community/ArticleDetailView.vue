@@ -30,7 +30,7 @@
     <div>
       <button @click="deleteArticle" class="custom-button">삭제하기</button><br><br>
 
-      <router-link :to="{ name: 'ArticleEditView', query: { articleId: article.id } }">
+      <router-link :to="{ name: 'ArticleEditView', query: { articleId: article?.id } }">
         <button type="button" class="custom-button">
           수정하기
         </button>
@@ -40,7 +40,7 @@
 
     
     <router-view/>
-    <CommentForm :id="article.id" @receive-new-comment="newComment"/>
+    <CommentForm :id="article?.id" @receive-new-comment="newComment"/>   
     <CommentList :comment_set="comment_set" :article_id="article_id" />
   </div>
 </template>
@@ -70,14 +70,16 @@ export default {
   },
   created() {
     // console.log('Article Detail View Created')
+    // console.log(this.$route.params.articleId)
     this.getArticleDetail()
+    // const articleId = this.
     // console.log('아티클 디테일 정보랑 토큰 ::::::::', this.$store.state.token)
   },
   methods: {
     getArticleDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.$route.params.articleId}/`,
         params: {},
         headers: {
           Authorization: `Token ${this.$store.state.token}`
@@ -89,7 +91,7 @@ export default {
         // console.log(response.data.comment_set)
         this.article = response.data
         // console.log(this.article)
-        console.log(response.data)
+        console.log('afvasjfalsjflasjflasj',response.data)
         this.comment_set = response.data.comment_set
         this.article_id = response.data.id
 
@@ -105,15 +107,15 @@ export default {
       const user = this.$store.state.user.id
       axios({
         method: 'DELETE',
-        url: `${API_URL}/api/v1/articles/${this.$route.params.id}/`,
+        url: `${API_URL}/api/v1/articles/${this.$route.params.articleId}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         },
         params: {},
         data: { user },
       })
-      .then((response) => {
-        console.log('삭제 응답 ::::::', response)
+      .then(() => {
+        // console.log('삭제 응답 ::::::', response)
         this.$router.push({name: 'CommunityView'})
       })
       .catch((error) => {

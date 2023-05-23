@@ -29,7 +29,7 @@ export default {
       const title = this.title
       const content = this.content
       const user = this.$store.state.user.id
-      console.log('넌 어디서 찍히는 아이니??', user)
+      // console.log('넌 어디서 찍히는 아이니??', user)
 
       if (!title) {
         alert('제목 입력해주세요')
