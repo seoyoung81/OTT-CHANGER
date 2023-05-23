@@ -54,7 +54,7 @@ export default {
                     console.log(this.videoSrc)
                     break;
             }}
-            // console.log(this.videoSrc)
+            console.log(this.videoSrc)
             
             // poster img
             

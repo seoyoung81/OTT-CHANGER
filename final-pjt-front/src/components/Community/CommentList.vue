@@ -8,6 +8,7 @@
       :comment="comment"
       :idx="idx"
       :article_id="article_id"
+      :comment_id="comment.id"
       @reload-comment="reloadComment"
     />
   </div>

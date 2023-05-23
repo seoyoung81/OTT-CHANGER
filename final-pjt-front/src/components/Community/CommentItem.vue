@@ -18,26 +18,28 @@ export default {
     idx: Number,
     article_id: Number,
   },
+  created() {
+    console.log('created',this.article_id)
+  },
   methods: {
     deleteComment() {
+      
       console.log('일단 들어와')
+      console.log(this.comment.id)
       const user = this.$store.state.user.id
-      this.$route.params.id = this.comment.id
-      console.log(user)
-      console.log(this.$route.params.id)
       axios({
         method: 'DELETE',
-        url: `${API_URL}/api/v1/comments/${this.$route.params.id}/`,
+        url: `${API_URL}/api/v1/comments/${this.comment.id}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         },
         params: {},
         data: { user },
       })
-      .then((response) => {
-        console.log('삭제 응답 ::::::', response)
-        // this.$router.push({name: 'ArticleDetailView', params: {id: this.article_id}})
+      .then(() => {
         this.$emit('reload-comment')
+        console.log(this.article_id)
+        this.$router.push({name: 'ArticleDetailView', params: { articleId: this.article_id }})
       })
       .catch((error) => {
         console.log(error)

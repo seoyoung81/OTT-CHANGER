@@ -5,7 +5,7 @@
 
     <!-- 글쓰기 버튼 -->
     <router-link to="/create">
-      <button type="button" class="custom-button">
+      <button type="button" class="custom-button" style="margin-right: 30px;">
         글쓰기
       </button>
     </router-link>
@@ -64,7 +64,8 @@ export default {
     font-size: 14px;
     cursor: pointer;
     float: right;
-    margin-right: 90px;
+    
+
   }
 
   .custom-button .button-text {

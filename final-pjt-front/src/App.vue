@@ -37,10 +37,10 @@ export default {
       this.loggedin_user_id = this.$store.state.user.id
       // console.log(this.loggedin_user_id)
 
-      const path = '/main'
-      if (this.$route.path != path) {
-        this.$router.push({name:'MainView'})
-      }
+      // const path = '/main'
+      // if (this.$route.path != path) {
+      //   this.$router.push({name:'MainView'})
+      // }
     },
     methods: {
       logOut(){

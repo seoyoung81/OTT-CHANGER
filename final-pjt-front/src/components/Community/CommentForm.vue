@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <h1>댓글 작성</h1>
+    <h5>댓글 작성</h5>
     <form @submit.prevent="createComment">
       <label for="content"></label>
       <textarea id="content" cols="30" v-model="content"></textarea><br>
@@ -50,6 +50,7 @@ export default {
         this.$emit('receive-new-comment', comment)
         this.content = ''
         this.$router.go(0)
+    
       })
       .catch((err) => {
         console.log(err)

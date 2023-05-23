@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="backArticle" class="btn btn-outline-primary" style="float: left; margin-left: 10%;">목록보기</button>
+    <button @click="backArticle" class="custom-button-list" style="float: left; margin-left: 10%;">목록보기</button>
     <h1 style="margin-right: 25%;">Detail</h1><br>
     
     <div class="detail-form">
@@ -25,16 +25,16 @@
       </div>
 
 
-
-
-    <div>
-      <button @click="deleteArticle" class="custom-button">삭제하기</button><br><br>
-
+    <div class="button-algin-detail">
+      <br>
+      
       <router-link :to="{ name: 'ArticleEditView', query: { articleId: article?.id } }">
         <button type="button" class="custom-button">
           수정하기
         </button>
       </router-link>
+      <button @click="deleteArticle" class="custom-button">삭제하기</button>
+      <br><br>
   
     </div>
 
@@ -68,10 +68,14 @@ export default {
       user: null,
     }
   },
+  beforeCreate() {
+  },
   created() {
     // console.log('Article Detail View Created')
     // console.log(this.$route.params.articleId)
     this.getArticleDetail()
+    this.newComment()
+    console.log(this.comment_set)
     // const articleId = this.
     // console.log('아티클 디테일 정보랑 토큰 ::::::::', this.$store.state.token)
   },
@@ -132,8 +136,9 @@ export default {
   background-color: #FF4081;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
  
 }
 
@@ -160,6 +165,27 @@ export default {
     float: right;
     margin-top: 85px;
   }
+
+
+.custom-button-list {
+padding: 10px 15px;
+background-color: #61DAFB;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+
+}
+
+.custom-button-list:hover {
+  background-color: #007997;
+ 
+}
+
+.button-algin-detail {
+  margin-right: 9%;
+
+}
 
 
 </style>
