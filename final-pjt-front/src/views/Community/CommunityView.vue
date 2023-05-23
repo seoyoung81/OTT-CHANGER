@@ -1,10 +1,19 @@
 <template>
   <div>
-    <h1>Community</h1>
-    <router-link to="/create"><button type="button" class="btn btn-outline-primary">글쓰기</button></router-link>
+    <h1>Community</h1><br>
+    <hr style="width: 80px; height: 2px; margin: auto; background-color: #ffe4ff;"><br>
+
+    <!-- 글쓰기 버튼 -->
+    <router-link to="/create">
+      <button type="button" class="custom-button">
+        글쓰기
+      </button>
+    </router-link>
+    <br><br>
+    
+    <!-- 글 -->
     <ArticleList/>
-    <span class="bottom-0 end-0">
-    </span>
+
     <router-view/>
   </div>
 </template>
@@ -45,5 +54,20 @@ export default {
 </script>
 
 <style>
+.custom-button {
+    background-color: #FF4081;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+    margin-right: 90px;
+  }
+
+  .custom-button .button-text {
+      font-size: 18px;
+  }
 
 </style>
