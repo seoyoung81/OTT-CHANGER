@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h1>내가 좋아요한 영화</h1>
+    <br>
+    <div class="text-align">
+        <h5>내가 
+            <img src="@/assets/heart.png" style="width: 50px;">
+            한 영화
+        </h5>
+    </div>
     <MyLikesItem
     v-for="(movie, idx) in my_likes"
     :key="idx"
@@ -39,5 +45,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

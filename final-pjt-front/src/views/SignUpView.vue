@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Sign Up Page</h1>
+    <h1>Sign Up Page</h1><br>
     <form @submit.prevent="signUp" class="form-container">
       <div class="align">
         <label for="email">Email</label>&nbsp;&nbsp;
@@ -18,12 +18,10 @@
       </div>
 
       <div class="align">
-        <label for="password2"> Password&nbsp;Confirmation</label>&nbsp;&nbsp;
+        <label for="password2"> Password Confirmation</label>&nbsp;&nbsp;
         <input type="password" id="password2" v-model="password2">
       </div>
-      
       <input type="submit" value="SignUp">
-
     </form>
   </div>
 </template>
@@ -60,14 +58,25 @@ export default {
 
 <style>
 .form-container {
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
+  
 }
 
+.align {
+  display: flex;
+  align-items: center;
+}
 
+.align label {
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
 
-input[type="text"],
-input[type="password"] {
+.align input[type="text"],
+.align input[type="password"] {
+  flex: 1;
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -76,17 +85,28 @@ input[type="password"] {
 }
 
 input[type="submit"] {
+  float: right;
   padding: 10px 15px;
-  background-color: #007bff;
+  background-color: #FF4081;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+ 
 }
 
 input[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #ff4080bd;
+ 
 }
+
+label {
+  display: inline-block;
+  width: 120px;
+  text-align: right;
+  margin-right: 10px;
+}
+
 
 
 

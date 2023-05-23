@@ -3,9 +3,9 @@
     <h1>영화 정보</h1>
     <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
     
-    <iframe :src="videoSrc" allowfullscreen ></iframe>
+    <iframe :src="videoSrc" allowfullscreen></iframe>
     <p>영화 제목: {{ movie.title }}</p>
-    <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
+    <p>영화 포스터: <img :src="poster_path_src" style="width:500px;"></p>
     <p>영화 내용: {{ movie.overview}}</p>
     <button @click="movieLike">좋아요!</button>
     <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>

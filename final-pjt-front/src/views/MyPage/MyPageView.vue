@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <h1>{{ username }}'s My Page</h1>
-    <MyLikesList/>
-    <MyArticlesList/>
+  <div class="mypage-container">
+    <form class="mypage">
+      <img src="@/assets/MyPage_logo02.png"
+        style="width: 250px;">
+  
+      <MyLikesList/><br>
+      <MyArticlesList/>
+    </form>
   </div>
 </template>
 
@@ -29,5 +33,23 @@ export default {
 </script>
 
 <style>
+.mypage-container {
+  display: flex;
+  height: 100%;
+  outline: 2px solid #e0e0e0;
+  padding: 40px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.mypage {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+
 
 </style>

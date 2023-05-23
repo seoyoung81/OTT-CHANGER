@@ -2,12 +2,6 @@
   <div>
     <!-- <h5>{{ article.id }}</h5> -->
     <br><br>
-
-    
-    <!-- 게시글 번호 -->
-    <span class="article-number">
-      {{ article.id }}
-    </span>
     
     <!-- 작성자 -->
     <router-link :to="{

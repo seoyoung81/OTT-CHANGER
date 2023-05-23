@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>내가 작성한 게시글</h1>
+    <br>
+    <h4 class="text_align">내가 작성한 게시글</h4><br>
     <MyArticlesItem
     v-for="(article, idx) in my_articles"
     :key="idx"
@@ -42,5 +43,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

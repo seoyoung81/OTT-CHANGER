@@ -2,7 +2,6 @@
   <div>
     <!-- <h1>Article List</h1> -->
     <br>
-    <span class="number-align">번호</span>
     <span class="title-align">게시글</span>
     <span class="user-align">작성자</span>
     <br><br>
@@ -35,7 +34,7 @@ export default {
 
 .title-align {
   float: left;
-  margin-left: 33px;
+  margin-left: 100px;
   
 }
 
@@ -45,9 +44,9 @@ export default {
 }
 
 .horizontal-line {
-    width: 90vw;
+    width: 95vw;
     height: 2px;
-    margin: 0 auto;
+    margin-left: 10px;
     margin-left: calc((100vw - 95vw) / 2); /* 반응형으로 가운데 정렬 */
   }
 

@@ -1,17 +1,45 @@
 <template>
   <div>
-    <h1>Detail</h1>
-    <p>글 번호 : {{ article?.id }}</p>
-    <p>작성자 : {{ article?.username }}</p>
-    <p>제목 : {{ article?.title }}</p>
-    <p>내용 : {{ article?.content }}</p>
-    <p>수정시간 : {{ article?.updated_at }}</p>
-    <router-link :to="{ name: 'ArticleEditView', query: { articleId: article.id } }">
-      <button class="btn btn-outline-primary">수정하기</button>
-    </router-link>
+    <button @click="backArticle" class="btn btn-outline-primary" style="float: left; margin-left: 10%;">목록보기</button>
+    <h1 style="margin-right: 25%;">Detail</h1><br>
+    
+    <div class="detail-form">
+      <br><br>
+      
+      <!-- 게시글 -->
+      <div class="detail-container">
+        <p style="font-weight: bolder;">{{ article?.title }}</p><hr>
+        <p>{{ article?.content }}</p>
+      </div>
+      
+
+      <router-link :to="{
+        name: 'MyPageView',
+        params: {id: user }}"
+          class="article-link">
+          <p class="article-detail-user">
+            {{ article?.username }}
+          </p>  
+        </router-link>
+        <p style="margin-top: 100px;">수정시간 {{ article?.updated_at }}</p>
+      </div>
+
+
+
+
+    <div>
+      <button @click="deleteArticle" class="custom-button">삭제하기</button><br><br>
+
+      <router-link :to="{ name: 'ArticleEditView', query: { articleId: article.id } }">
+        <button type="button" class="custom-button">
+          수정하기
+        </button>
+      </router-link>
+  
+    </div>
+
+    
     <router-view/>
-    <button @click="deleteArticle" class="btn btn-outline-primary">삭제하기</button><br><br>
-    <button @click="backArticle" class="btn btn-outline-primary">목록보기</button>
     <CommentForm :id="article.id" @receive-new-comment="newComment"/>
     <CommentList :comment_set="comment_set" :article_id="article_id" />
   </div>
@@ -97,5 +125,39 @@ export default {
 </script>
 
 <style>
+.custom-button {
+  padding: 10px 15px;
+  background-color: #FF4081;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ 
+}
+
+.custom-button:hover {
+  background-color: #ff4080bd;
+ 
+}
+
+.detail-form {
+  width: 80vw;
+  display: block;
+  height: 100%;
+  outline: 2px solid #e0e0e0;
+  padding: 10px 40px 10px;
+  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+}
+
+.article-detail-user {
+    display: inline-block;
+    float: right;
+    margin-top: 85px;
+  }
+
 
 </style>
