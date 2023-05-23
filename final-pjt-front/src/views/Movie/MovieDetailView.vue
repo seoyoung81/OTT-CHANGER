@@ -1,14 +1,21 @@
 <template>
   <div>
-    <h1>영화 정보</h1>
-    <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
-    
-    <iframe :src="videoSrc" allowfullscreen ></iframe>
-    <p>영화 제목: {{ movie.title }}</p>
+    <div class="main-container">
+        <div class="container">
+        <img :src="backdrop_path_src" class="backdrop-image">
+        <iframe :src="videoSrc" allowfullscreen style="width:900px; height:700px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;"></iframe>
+        </div>
+    </div>
+    <div>
+        <p>영화 제목: {{ movie.title }}</p>
+        <button @click="movieLike">좋아요!</button>
+        <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+    </div>
+    <div>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
     <p>영화 내용: {{ movie.overview}}</p>
-    <button @click="movieLike">좋아요!</button>
-    <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+    </div>
+    
   </div>
 </template>
 
@@ -99,7 +106,23 @@ export default {
 </script>
 
 <style>
+.main-container {
+  text-align: center;
 
-
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.backdrop-image {
+  width: 100%;
+  height: 100%;
+  opacity: 60%;
+  z-index: 1;
+  object-fit: cover;
+}
 
 </style>

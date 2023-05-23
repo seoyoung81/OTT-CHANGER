@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/main">Main</router-link> | 
-      <router-link to="/signup">Sign Up</router-link> | 
-      <router-link to="/login" >Log In</router-link> |
-      <!-- v-if="!`${this.$store.getters.isLogin}`" -->
-      <router-link to="/community">Community</router-link> |
-      <!-- <button v-if="$store.state.isLogin" @click="logOut">로그아웃</button> -->
-      <router-link to="/ott">OTT Changer</router-link> |
-      <router-link to="/mypage">MyPage</router-link>
+    <nav >
+      <router-link v-if="isLogin" to="/main">Main</router-link>
+      <router-link v-if="!isLogin" to="/signup">Sign Up | </router-link>
+      <router-link v-if="!isLogin" to="/login" >Log In</router-link>
+      <router-link to="/community">Community</router-link>
+      <router-link v-if="isLogin" to="/ott">OTT Changer</router-link>
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}">MyPage</router-link>
+      <button v-if="isLogin" @click="logOut">Log Out</button>
       <br><br>
     </nav>
     <router-view/>
@@ -18,24 +17,34 @@
 
 <script>
 export default {
-    name: 'IntroView',
+    name: 'AppView',
     components: {
-      
     },
     data() {
       return {
-        searchMovie: null
+        searchMovie: null,
+        loggedin_user_id : null,
+      }
+    },
+    computed:{
+    isLogin() {
+      return this.$store.getters.isLogin // 로그인 여부
+      }
+    },
+    created() {
+      // console.log(this.isLogin)
+      // console.log(this.$store.state.token)
+      this.loggedin_user_id = this.$store.state.user.id
+      // console.log(this.loggedin_user_id)
+
+      const path = '/main'
+      if (this.$route.path != path) {
+        this.$router.push({name:'MainView'})
       }
     },
     methods: {
       logOut(){
-        console.log('일단')
-        this.$store.state.isLogin = false
-        this.$router.go(0)
-       
-      },
-      toMain(){
-        this.$router.push({name:'MainView'})
+        this.$store.dispatch('logOut')
       },
     }
 

@@ -22,7 +22,9 @@ export default {
             my_articles: []
         }
     },
-    created() {
+    mounted() {
+        console.log('MyArticleList',this.$route.params.user_id)
+        console.log('MyArticleList',this.$store.state.user.id)
         this.$route.params.user_id = this.$store.state.user.id
         axios({
             method: 'get',

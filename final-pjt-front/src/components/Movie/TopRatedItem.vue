@@ -20,7 +20,7 @@
         }
       },
       created(){
-        console.log(this.movie)
+        // console.log(this.movie)
         this.poster_src = this.poster_src + `${this.movie.poster_path}`
     },
     methods: {

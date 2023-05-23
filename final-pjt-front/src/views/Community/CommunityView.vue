@@ -33,6 +33,7 @@ export default {
   },
   created() {
     this.getArticles()
+    // console.log(this.$store.state.articles)
   },
   methods: {
     getComments() {
