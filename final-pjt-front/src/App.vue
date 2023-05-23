@@ -57,17 +57,17 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #ffffff;
+  color: #e0e0e0;
 }
 
 nav a.router-link-exact-active {
-  color: #2a73ac;
+  color: #61dafb;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(51, 51, 51);
+  background-color: #282c34;
 }
 
 
