@@ -32,7 +32,9 @@ export default {
             }
             // console.log(payload)
             this.$store.dispatch('selectMovie', payload)
-            this.grayscale = !this.grayscale
+            if (this.$store.state.selected_lst_length <= 15) {
+                this.grayscale = !this.grayscale
+            }
         },
         
     }  
