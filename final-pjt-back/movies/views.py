@@ -89,41 +89,30 @@ def movie_search(request):
     return Response(serializer.data)
 
 # 영화 좋아요
-@api_view(['GET', 'POST'])
-def movie_like(request, movie_pk):
-    if request.method == 'GET':
-        print('aaaaaaaaaaaaaaaaaaaaaaaaaa')
-        movie = get_object_or_404(Movie, m_id=movie_pk)
-        print(movie_pk)
-        print(movie)
-        likes_count = movie.like_users.count()
-        print(likes_count)
-        print('잘 갔니..?')
-        return Response({'likes_count': likes_count})
-
-
+@api_view(['POST'])
+def likes_count(request, movie_pk):
     if request.method == 'POST':
-        print('11111111111111111')
+        # print('11111111111111111')
         like_movie = request.data['like_movie']
-        like_user = User.objects.get(pk=request.data['user_pk'])
+        # print(like_movie['m_id'])
         movies = Movie.objects.all()
         try:
-            print('222222222222222222')
-            movie = Movie.objects.get(id=like_movie['id'])
+            # print('222222222222222222')
+            movie = Movie.objects.get(id=movie_pk)
         except:
-            print('333333333333333333')
-            movie = Movie()
-            movie.m_id = len(movies) + 1
-            movie.id = like_movie['id']
-            movie.title = like_movie['title']
-            movie.overview = like_movie['overview']
-            movie.poster_path = like_movie['poster_path']
-            movie.release_date = like_movie['release_date']
-            movie.backdrop_path = like_movie['backdrop_path']
-            movie.popularity = like_movie['popularity']
-            movie.vote_count = like_movie['vote_count']
-            movie.vote_average = like_movie['vote_average']
-            print(movie)
+            # print('333333333333333333')
+            movie = Movie(
+                m_id = len(movies) + 1,
+                id = like_movie['id'],
+                title = like_movie['title'],
+                overview = like_movie['overview'],
+                poster_path = like_movie['poster_path'],
+                release_date = like_movie['release_date'],
+                backdrop_path = like_movie['backdrop_path'],
+                popularity = like_movie['popularity'],
+                vote_count = like_movie['vote_count'],
+                vote_average = like_movie['vote_average']
+            )
             print(like_movie['genre_ids'])
             # movie.genres = list(like_movie['genre_ids'])
             # print(movie)
@@ -139,18 +128,31 @@ def movie_like(request, movie_pk):
             movie.genres.add(*genres)
 
         finally:
-            if movie.like_users.filter(pk=like_user.pk).exists():
-                movie.like_users.remove(like_user.pk)
-                print('remove like user')
-            else:
-                movie.like_users.add(like_user.pk)
-                print('add like user')
+            likes_count = movie.like_users.count()
+            print(likes_count)
+            serializer = MovieListSerializer(movie)
+            print('잘 갔니..?')
+            return Response({'likes_count': likes_count, 'movie': serializer.data})
+        
+ 
+@api_view(['POST'])
+def movie_like(request, movie_pk, user_pk):
+    if request.method == 'POST':
+        print('11111111111111111')
+        # print(like_movie['m_id'])
+        like_user = User.objects.get(pk=user_pk)
+        movie = Movie.objects.get(m_id=movie_pk)
+        if movie.like_users.filter(pk=like_user.pk).exists():
+            movie.like_users.remove(like_user.pk)
+            print('remove like user')
+        else:
+            movie.like_users.add(like_user.pk)
+            print('add like user')
 
         serializer = MovieLikeUsers(movie)
         # print(serializer.data)   
         return Response(serializer.data)
-        
- 
+
 
 @api_view(['GET'])
 def movie_detail(request, movie_pk):

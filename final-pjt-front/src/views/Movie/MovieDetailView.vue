@@ -7,7 +7,7 @@
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;"></p>
     <button v-if="!isLiked" @click="movieLike">좋아요!</button>
-    <button v-if="isLiked" @click="movieLike">좋아요 취소</button>
+    <button v-else @click="movieLike">좋아요 취소</button>
         <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
 
     <p>영화 내용: {{ movie.overview}}</p>
@@ -36,8 +36,11 @@ export default {
     created() {
         const movieData = this.$route.query.data
         const movie = JSON.parse(movieData)
+        // console.log(movie)
         this.movie = movie
-        // console.log(this.movie)
+        this.movie = { ...this.movie, m_id: 9999999 } // Add m_id field to like_movie object
+        this.likeUsers()
+        console.log(this.movie)
 
         // poster
         this.backdrop_path_src = this.backdrop_path_src + `${this.movie.backdrop_path}`
@@ -72,30 +75,56 @@ export default {
     },
     methods: {
         movieLike() {
-            const like_movie = this.movie
+            console.log('enter movieLike')
+            const like_movie = this.movie 
+            // console.log(like_movie.m_id)
             const user_pk = this.$store.state.user.id
-            console.log('좋아요 누른 영화 정보', like_movie)
-            console.log('좋아요 누른 유저 id', user_pk)
-            // console.log(this.$store.state.token)
+            // console.log('좋아요 누른 영화 정보', like_movie)
+            // console.log('좋아요 누른 유저 id', user_pk)
+            console.log(like_movie.m_id)
             axios({
                 method: 'post',
-                url: 'http://127.0.0.1:8000/api/v1/movie_like/',
-                data: { like_movie, user_pk }
+                url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.m_id}/${user_pk}/`,
+                data: { like_movie, user_pk },
+                params: { }
             })
             .then((response) => {
-                // console.log(response)
+                console.log(response)
                 this.likes_count = response.data.like_users_count
                 const like_users = response.data.like_users
-                console.log('전', this.isLiked)
-                for (let element of like_users) {
-                    // console.log(element)
-                    // console.log(this.$store.state.user.id)
-                    if ( this.$store.state.user.id === element.id) {
-                        this.isLiked = !this.isLiked
-                        console.log('후', this.isLiked)
-                    }
+                console.log(response.data.m_id)
+                // console.log('전', this.isLiked)
+                const likedUser = like_users.find(user => user.id === this.$store.state.user.id)
+                if (likedUser) {
+                    this.isLiked = true
+                } else {
+                    this.isLiked = false
                 }
-                this.$router.go(0)
+            })
+            .catch((error) =>{
+                console.log(error)
+            })
+        },
+        likeUsers() {
+            const like_movie = this.movie
+            console.log(like_movie.m_id)
+            // const user_pk = this.$store.state.user.id
+            console.log('hihihihihihihihihihihihihih')
+            axios({
+                method: 'post',
+                url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.id}/`,
+                data: { like_movie },
+                params: {}
+            })
+            .then((response) => {
+                console.log('잘왔니..?')
+                this.likes_count = response.data.likes_count
+                console.log(response.data)
+                this.movie.m_id = response.data.movie.m_id
+                // this.$router.go(0)
+            })
+            .catch((error) => {
+                console.log(error)
             })
         }
     }
