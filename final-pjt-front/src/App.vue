@@ -10,6 +10,7 @@
       <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"><img src="@/assets/MyPage_logo02.png"
         style="width: 110px; margin: 10px; position: sticky; right: 10px; z-index: 999;" class="mypage-img"></router-link>
 
+
       <router-link  to="/signup"> Sign Up | </router-link>
       <router-link  to="/login" >Log In</router-link>
 

@@ -6,7 +6,8 @@
     <!-- 작성자 -->
     <router-link :to="{
       name: 'MyPageView',
-      params: { id: user_id }}"
+        params: {id: article?.user },
+        query: { username: article?.username} }"
       class="article-link">
       <p class="article-user">
         {{ article.username }}
@@ -41,6 +42,7 @@ export default {
   created() {
     this.article_id = this.article.id
     this.user_id = this.article.user
+    console.log(this.user_id)
   }
 }
 </script>

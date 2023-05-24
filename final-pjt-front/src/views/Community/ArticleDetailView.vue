@@ -15,7 +15,8 @@
 
       <router-link :to="{
         name: 'MyPageView',
-        params: {id: user }}"
+        params: {id: article?.user },
+        query: { username: article?.username} }"
           class="article-link">
           <p class="article-detail-user">
             {{ article?.username }}
@@ -76,7 +77,7 @@ export default {
     // console.log(this.$route.params.articleId)
     this.getArticleDetail()
     this.newComment()
-    console.log(this.comment_set)
+    console.log(this.article.user)
     // const articleId = this.
     // console.log('아티클 디테일 정보랑 토큰 ::::::::', this.$store.state.token)
   },
@@ -96,7 +97,7 @@ export default {
         // console.log(response.data.comment_set)
         this.article = response.data
         console.log('article detail 정보 가져오기')
-        console.log(this.article.user)
+        console.log(this.article)
         if (this.$store.state.user.id === this.article.user) {
           console.log('지금 로그인한 사람의 id와 해당 게시글을 작성한 사람의 id 확인')
           this.isAuthor = true
@@ -116,7 +117,7 @@ export default {
       this.comment_set.push(newcomment)
     },
     deleteArticle() {
-      const user = this.$store.state.user.id
+      const logged_in_user = this.$store.state.user.id
       axios({
         method: 'DELETE',
         url: `${API_URL}/api/v1/articles/${this.$route.params.articleId}/`,
@@ -124,7 +125,7 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         },
         params: {},
-        data: { user },
+        data: { logged_in_user },
       })
       .then(() => {
         // console.log('삭제 응답 ::::::', response)

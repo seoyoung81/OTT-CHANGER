@@ -148,7 +148,16 @@ export default {
             .then((response) => {
                 // console.log('잘왔니..?')
                 this.likes_count = response.data.likes_count
-                // this.$router.go(0)
+                const liked_users = response.data.movie.like_users
+                console.log(liked_users)
+                const likedCheck = liked_users.find(user => user === this.$store.state.user.id)
+                console.log(likedCheck)
+                if (likedCheck) {
+                    this.isLiked = true
+                } else {
+                    this.isLiked = false
+                }
+                console.log(this.isLiked)
             })
             .catch((error) => {
                 console.log(error)
