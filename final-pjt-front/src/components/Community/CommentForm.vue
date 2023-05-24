@@ -1,11 +1,15 @@
 <template>
   <div>
     <br>
-    <h5>댓글 작성</h5>
-    <form @submit.prevent="createComment">
+    <h5 style="float: left; margin-left: 10%">댓글 쓰기</h5>
+    <!-- form -->
+    <form @submit.prevent="createComment" class="form-comment-container">
       <label for="content"></label>
-      <textarea id="content" cols="30" v-model="content"></textarea><br>
-      <button type="submit" id="submit" class="btn btn-outline-primary">댓글 쓰기</button>
+      <textarea id="content" cols="110" rows="1" v-model="content"></textarea><br>
+      
+      <button type="submit" id="submit" class="custom-button-list"
+      style="float: right; margin-right: 10%;"
+      >완료</button>
     </form>
   </div>
 </template>
@@ -61,5 +65,11 @@ export default {
 </script>
 
 <style>
+.form-comment-container {
+  padding-top: 20px;
+
+}
+
+
 
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <nav >
-      <router-link v-if="isLogin" to="/main">Main</router-link>
-      <router-link v-if="!isLogin" to="/signup">Sign Up | </router-link>
+    <nav style="margin-left: 10%;">
+      <router-link v-if="isLogin" to="/main">Main |</router-link>
+      <router-link to="/community"> Community |</router-link>
+      <router-link v-if="isLogin" to="/ott"> OTT Changer |</router-link>
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"> MyPage</router-link>
+      <router-link v-if="!isLogin" to="/signup"> Sign Up | </router-link>
       <router-link v-if="!isLogin" to="/login" >Log In</router-link>
-      <router-link to="/community">Community</router-link>
-      <router-link v-if="isLogin" to="/ott">OTT Changer</router-link>
-      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}">MyPage</router-link>
-      <button v-if="isLogin" @click="logOut">Log Out</button>
+
+      <button v-if="isLogin" @click="logOut" class="logout-btn">Log Out</button>
       <br><br>
     </nav>
     <router-view/>
@@ -77,6 +78,23 @@ body {
   margin: 0;
   padding: 0;
   background-color: #282c34;
+}
+
+.logout-btn {
+  background-color: #50555E;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  float: right;
+  
+
+}
+
+.logout-btn .button-text {
+    font-size: 18px;
 }
 
 

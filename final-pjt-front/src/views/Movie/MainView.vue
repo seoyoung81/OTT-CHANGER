@@ -8,12 +8,13 @@
         class="search-input" 
         placeholder="검색어를 입력하세요"
         >
-      <button 
-        @click="goSearch" 
-        class="search-button">
-      검색
-      </button>
+      <img src="@/assets/search.png" 
+        @click="goSearch"
+        class="search-img"
+        style="width: 60px; margin-left: 20px;">
     </div>
+    <br>
+
     <!-- 백드롭&포스터 -->
     <div style="position: relative;" class="container">
       <img :src="backdrop_path_src" class="backdrop-image">
@@ -120,7 +121,7 @@ export default {
   display: inline;
   border: none !important;;
   outline: none;
-  padding: 0 0 0 5px !important;
+  padding: 0 0 0 50px !important;
   margin: 0 !important;
   font-size: 16px;
   color: white;
@@ -144,26 +145,20 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
 }
 
 
-
-
-
-.search-button {
-  display: inline-block;
-  flex-shrink: 0;
-  background-color: #5b8dc22f;
-  color: #fff;
-  border: none;
-  outline: none;
-  height: 40px;
-  border-radius: 0 20px 20px 0; /* 추가: 버튼 모서리 둥글게 조정 */
-  /* padding: 8px 12px; */
+.search-img {
   cursor: pointer;
+  width: 30px;
+  transition: filter 0.3s ease-in-out;
 }
 
-.search-button:hover {
-  background-color: #265f9c;
+.search-img:hover {
+  filter: brightness(70%); 
 }
+
+
+
 </style>

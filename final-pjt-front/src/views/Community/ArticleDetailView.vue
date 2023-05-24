@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="backArticle" class="custom-button-list" style="float: left; margin-left: 10%;">목록보기</button>
-    <h1 style="margin-right: 25%;">Detail</h1><br>
+    <h1 style="margin-right: 15%;">Detail</h1><br>
     
     <div class="detail-form">
       <br><br>

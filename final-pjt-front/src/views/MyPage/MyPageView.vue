@@ -38,7 +38,7 @@ export default {
   height: 100%;
   outline: 2px solid #e0e0e0;
   padding: 40px;
-  border-radius: 30px;
+  border-radius: 50px;
   justify-content: center;
   align-items: center;
   
