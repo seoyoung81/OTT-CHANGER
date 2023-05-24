@@ -90,51 +90,65 @@ def movie_search(request):
 
 # 영화 좋아요
 @api_view(['GET', 'POST'])
-def movie_like(request):
-    print('11111111111111111')
-    like_movie = request.data['like_movie']
-    like_user = User.objects.get(pk=request.data['user_pk'])
-    movies = Movie.objects.all()
-    try:
-        print('222222222222222222')
-        movie = Movie.objects.get(id=like_movie['id'])
-    except:
-        print('333333333333333333')
-        movie = Movie()
-        movie.m_id = len(movies) + 1
-        movie.id = like_movie['id']
-        movie.title = like_movie['title']
-        movie.overview = like_movie['overview']
-        movie.poster_path = like_movie['poster_path']
-        movie.release_date = like_movie['release_date']
-        movie.backdrop_path = like_movie['backdrop_path']
-        movie.popularity = like_movie['popularity']
-        movie.vote_count = like_movie['vote_count']
-        movie.vote_average = like_movie['vote_average']
+def movie_like(request, movie_pk):
+    if request.method == 'GET':
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaa')
+        movie = get_object_or_404(Movie, m_id=movie_pk)
+        print(movie_pk)
         print(movie)
-        print(like_movie['genre_ids'])
-        # movie.genres = list(like_movie['genre_ids'])
-        # print(movie)
-        movie.save()
-        print(movie)
-        
-        # Get Genre objects based on genre_ids
-        genre_ids = like_movie['genre_ids']
-        genres = Genre.objects.filter(pk__in=genre_ids)
+        likes_count = movie.like_users.count()
+        print(likes_count)
+        print('잘 갔니..?')
+        return Response({'likes_count': likes_count})
 
-        # Clear existing genres and add new ones
-        movie.genres.clear()
-        movie.genres.add(*genres)
 
-    finally:
-        if movie.like_users.filter(pk=like_user.pk).exists():
-            movie.like_users.remove(like_user.pk)
-        else:
-            movie.like_users.add(like_user.pk)
+    if request.method == 'POST':
+        print('11111111111111111')
+        like_movie = request.data['like_movie']
+        like_user = User.objects.get(pk=request.data['user_pk'])
+        movies = Movie.objects.all()
+        try:
+            print('222222222222222222')
+            movie = Movie.objects.get(id=like_movie['id'])
+        except:
+            print('333333333333333333')
+            movie = Movie()
+            movie.m_id = len(movies) + 1
+            movie.id = like_movie['id']
+            movie.title = like_movie['title']
+            movie.overview = like_movie['overview']
+            movie.poster_path = like_movie['poster_path']
+            movie.release_date = like_movie['release_date']
+            movie.backdrop_path = like_movie['backdrop_path']
+            movie.popularity = like_movie['popularity']
+            movie.vote_count = like_movie['vote_count']
+            movie.vote_average = like_movie['vote_average']
+            print(movie)
+            print(like_movie['genre_ids'])
+            # movie.genres = list(like_movie['genre_ids'])
+            # print(movie)
+            movie.save()
+            print(movie)
+            
+            # Get Genre objects based on genre_ids
+            genre_ids = like_movie['genre_ids']
+            genres = Genre.objects.filter(pk__in=genre_ids)
 
-    serializer = MovieLikeUsers(movie)
-    # print(serializer.data)   
-    return Response(serializer.data)
+            # Clear existing genres and add new ones
+            movie.genres.clear()
+            movie.genres.add(*genres)
+
+        finally:
+            if movie.like_users.filter(pk=like_user.pk).exists():
+                movie.like_users.remove(like_user.pk)
+                print('remove like user')
+            else:
+                movie.like_users.add(like_user.pk)
+                print('add like user')
+
+        serializer = MovieLikeUsers(movie)
+        # print(serializer.data)   
+        return Response(serializer.data)
         
  
 

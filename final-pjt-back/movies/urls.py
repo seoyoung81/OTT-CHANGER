@@ -11,7 +11,7 @@ urlpatterns = [
     path('recommend_genre/', views.recommend_genre),
     path('movie_select/', views.movie_select),
     path('movie_search/', views.movie_search),
-    path('movie_like/', views.movie_like),
+    path('movie_like/<int:movie_pk>/', views.movie_like),
     path('movies/<int:movie_pk>/', views.movie_detail),
     path('movies/likes/<int:user_pk>/', views.my_movie_likes),
     

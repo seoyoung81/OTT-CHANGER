@@ -1,8 +1,8 @@
 <template>
   <div>
     
-    <p><span>{{ idx + 1 }}    </span>{{ comment.content }}</p>
-    <button @click="deleteComment" class="btn btn-outline-success">삭제하기</button>
+    <p><span>{{ idx + 1 }}    </span>{{ comment?.content }}</p>
+    <button v-if="isCommentAuthor" @click="deleteComment" class="btn btn-outline-success">삭제하기</button>
     
     <hr>
   </div>
@@ -18,8 +18,18 @@ export default {
     idx: Number,
     article_id: Number,
   },
+  data() {
+    return {
+      isCommentAuthor : false,
+    }
+  },
   created() {
     console.log('created',this.article_id)
+    console.log(this.comment.user)
+    if (this.$store.state.user.id === this.comment.user) {
+      this.isCommentAuthor = true
+    }
+    console.log(this.isCommentAuthor)
   },
   methods: {
     deleteComment() {

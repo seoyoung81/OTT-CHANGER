@@ -28,12 +28,12 @@
     <div class="button-algin-detail">
       <br>
       
-      <router-link :to="{ name: 'ArticleEditView', query: { articleId: article?.id } }">
+      <router-link v-if="isAuthor" :to="{ name: 'ArticleEditView', query: { articleId: article?.id } }">
         <button type="button" class="custom-button">
           수정하기
         </button>
       </router-link>
-      <button @click="deleteArticle" class="custom-button">삭제하기</button>
+      <button v-if="isAuthor" @click="deleteArticle" class="custom-button">삭제하기</button>
       <br><br>
   
     </div>
@@ -66,6 +66,7 @@ export default {
       comment_set : [],
       article_id: null,
       user: null,
+      isAuthor : false,
     }
   },
   beforeCreate() {
@@ -94,8 +95,15 @@ export default {
         // console.log(response)
         // console.log(response.data.comment_set)
         this.article = response.data
+        console.log('article detail 정보 가져오기')
+        console.log(this.article.user)
+        if (this.$store.state.user.id === this.article.user) {
+          console.log('지금 로그인한 사람의 id와 해당 게시글을 작성한 사람의 id 확인')
+          this.isAuthor = true
+        }
+        console.log(this.isAuthor)
         // console.log(this.article)
-        console.log('afvasjfalsjflasjflasj',response.data)
+        // console.log('afvasjfalsjflasjflasj',response.data)
         this.comment_set = response.data.comment_set
         this.article_id = response.data.id
 

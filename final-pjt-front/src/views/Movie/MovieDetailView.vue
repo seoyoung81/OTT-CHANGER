@@ -6,7 +6,8 @@
     <iframe :src="videoSrc" allowfullscreen></iframe>
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;"></p>
-    <button @click="movieLike">좋아요!</button>
+    <button v-if="!isLiked" @click="movieLike">좋아요!</button>
+    <button v-if="isLiked" @click="movieLike">좋아요 취소</button>
         <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
 
     <p>영화 내용: {{ movie.overview}}</p>
@@ -94,6 +95,7 @@ export default {
                         console.log('후', this.isLiked)
                     }
                 }
+                this.$router.go(0)
             })
         }
     }
