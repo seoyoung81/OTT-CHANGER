@@ -27,6 +27,7 @@ export default new Vuex.Store({
     selected_lst: [
 
     ],
+    selected_lst_length: null,
     calculateObj: {
       netflix: 0,
       tving: 0,
@@ -84,6 +85,7 @@ export default new Vuex.Store({
       }
       else if (state.selected_lst.length >= 15) {
         alert('15개까지만 선택가능합니다')
+        state.selected_lst_length = state.selected_lst.length + 1
 
       } else if (state.selected_lst.length >= 1) {
         // for 문 돌기
@@ -141,6 +143,7 @@ export default new Vuex.Store({
     },
     RESET_LST(state) {
       state.selected_lst = []
+      state.selected_lst_length = 0
     }
   },
   actions: {

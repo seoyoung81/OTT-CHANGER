@@ -27,6 +27,9 @@ export default {
             username: null
         }
     },
+    created() {
+      console.log('hi')
+    },
     mounted() {
       this.username = this.$route.query.username
     }
