@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
+    <div class="dis-flex mx-auto" style="width: 80%; height: 300px;" >
         <NowPlayingItem
         v-for="(movie, idx) in nowplaying_lst"
         :key="idx"

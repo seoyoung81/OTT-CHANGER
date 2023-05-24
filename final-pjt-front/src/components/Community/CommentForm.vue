@@ -5,7 +5,7 @@
     <!-- form -->
     <form @submit.prevent="createComment" class="form-comment-container">
       <label for="content"></label>
-      <textarea id="content" cols="110" rows="1" v-model="content"></textarea><br>
+      <textarea id="content" v-model="content" style="width: 80%; height: 1.75em; border: none; resize: none;"></textarea><br>
       
       <button type="submit" id="submit" class="custom-button-list"
       style="float: right; margin-right: 10%;"

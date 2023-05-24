@@ -1,5 +1,5 @@
 <template>
-  <div class="dis-flex mx-auto" style="width: 80%; height: 450px;" >
+  <div class="dis-flex mx-auto" style="width: 80%; height: 300px;" >
     <UpComingItem
         v-for="(movie, idx) in upcoming_lst"
         :key="idx"

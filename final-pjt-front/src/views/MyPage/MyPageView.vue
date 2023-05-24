@@ -1,9 +1,10 @@
 <template>
   <div class="mypage-container">
     <form class="mypage">
-      <img src="@/assets/MyPage_logo02.png"
-        style="width: 250px;">
-  
+      <h3>{{ username }}'s Page</h3>
+      <!-- <img src="@/assets/MyPage_logo02.png"
+        style="width: 250px;"> -->
+
       <MyLikesList/><br>
       <MyArticlesList/>
     </form>
@@ -41,6 +42,8 @@ export default {
   border-radius: 50px;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  margin-left: 5%;
   
 }
 

@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h1>영화 정보</h1>
-    <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
-    
-    <iframe :src="videoSrc" allowfullscreen ></iframe>
-    <p>영화 제목: {{ movie.title }}</p>
+
+    <div style="position: relative;" class="detail-movie-bg">
+        <img :src="backdrop_path_src" class="detail-movie-backdrop">
+        <iframe :src="videoSrc" allowfullscreen class="detail-movie-ytb"></iframe>
+    </div>
+
+    <!-- 영화 제목 -->
+    <p>{{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
     <button v-if="!isLiked" @click="movieLike">좋아요!</button>
     <button v-else @click="movieLike">좋아요 취소</button>
@@ -131,7 +134,32 @@ export default {
 </script>
 
 <style>
+.detail-movie-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    position: relative;
+    margin: auto;
+}
 
+.detail-movie-backdrop {
+    width: 180%;
+    height: auto;
+    opacity: 60%;
+    z-index: 1;
+    object-fit: cover;
 
+}
+
+.detail-movie-ytb {
+    width: 95%;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
 
 </style>

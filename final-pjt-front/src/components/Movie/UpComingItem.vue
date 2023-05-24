@@ -38,15 +38,5 @@
   </script>
   
   <style>
-  .card-image {
-    width: 200px;
-    height: auto;
-    border-radius: 30px;
-    transition: transform 0.3s ease;
-  }
-
-  .card-image:hover {
-      transform: scale(1.1);
-  }
-    
+ 
   </style>

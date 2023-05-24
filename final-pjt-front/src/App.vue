@@ -2,9 +2,14 @@
   <div id="app">
     <nav style="margin-left: 10%;">
       <router-link v-if="isLogin" to="/main">Main |</router-link>
-      <router-link to="/community"> Community |</router-link>
+      <router-link to="/community">
+        <img src="@/assets/community.png" style="width: 110px;">
+        <!-- 커뮤니티 다시 -->
+      </router-link>
       <router-link v-if="isLogin" to="/ott"> OTT Changer |</router-link>
-      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"> MyPage</router-link>
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"><img src="@/assets/MyPage_logo02.png"
+        style="width: 110px; margin: 10px; position: sticky; right: 10px; z-index: 999;" class="mypage-img"></router-link>
+
       <router-link v-if="!isLogin" to="/signup"> Sign Up | </router-link>
       <router-link v-if="!isLogin" to="/login" >Log In</router-link>
 
@@ -95,6 +100,10 @@ body {
 
 .logout-btn .button-text {
     font-size: 18px;
+}
+
+.mypage-img:hover {
+  filter: brightness(70%);
 }
 
 
