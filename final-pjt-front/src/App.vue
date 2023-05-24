@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <nav style="margin-left: 10%;">
-      <router-link v-if="isLogin" to="/main">Main |</router-link>
+    <nav>
+      <!-- main logo -->
+      <router-link to="/main">
+        <img src="@/assets/main_log2.png" style="width: 200px; float: left; margin-left: 10px;">
+      </router-link>
+      <!-- community -->
       <router-link to="/community">
         <img src="@/assets/community.png" style="width: 110px;">
         <!-- 커뮤니티 다시 -->
