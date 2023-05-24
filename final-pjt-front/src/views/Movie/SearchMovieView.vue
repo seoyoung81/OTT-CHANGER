@@ -1,32 +1,56 @@
 <template>
-  <div>
-    <p>{{ movie.title }}</p>
-    <img
-    :src="poster_src"
-    style="height: 300px"
-    @click="getMovieDetail"
-    ><br>
-    <!-- ott img -->
-    <img alt="netflix" 
-    v-if="netflix"
-    :src="require(`@/assets/netflix_logo.png`)"
-    >
-    <img 
-    v-if="tving"
-    :src="require(`@/assets/tving_logo.png`)"
-    >
-    <img 
-    v-if="wavve"
-    :src="require(`@/assets/wavve_logo.png`)"
-    >
-    <img 
-    v-if="dplus"
-    :src="require(`@/assets/dplus_logo.png`)"
-    >
-    <img 
-    v-if="watcha"
-    :src="require(`@/assets/watcha_logo.png`)"
-    >
+  <div class="d-flex">
+    <div style="margin-left: 10%;">
+        <h1>{{ movie.title }}</h1>
+        <img
+        :src="poster_src"
+        style="height: 600px; margin-top: 30px; cursor: pointer;" 
+        @click="getMovieDetail"
+        ><br>
+    </div>
+
+    <div style="margin-top: 85px; margin-left: 50px;">
+        <!-- ott img -->
+        <a href="https://www.netflix.com/">
+            <img alt="netflix" 
+            v-if="netflix"
+            :src="require(`@/assets/netflix_logo.png`)"
+            style="width: 150px; border-radius: 5px; margin-left: 5px; margin-right: 5px;"
+            >
+        </a>
+
+        <a href="https://www.tving.com/onboarding">
+            <img 
+            v-if="tving"
+            :src="require(`@/assets/tving_logo.png`)"
+            style="width: 150px; border-radius: 5px; margin-left: 5px; margin-right: 5px;"
+            >
+        </a>
+
+        <a href="https://www.wavve.com/">
+            <img 
+            v-if="wavve"
+            :src="require(`@/assets/wavve_logo.png`)"
+            style="width: 150px; border-radius: 5px; margin-left: 5px; margin-right: 5px;"
+        >
+        </a>
+
+        <a href="https://www.disneyplus.com/ko-kr">
+            <img 
+            v-if="dplus"
+            :src="require(`@/assets/dplus_logo.png`)"
+            style="width: 150px; border-radius: 5px; margin-left: 5px; margin-right: 5px;"
+            >
+        </a>
+
+        <a href="https://watcha.com/">
+            <img 
+            v-if="watcha"
+            :src="require(`@/assets/watcha_logo.png`)"
+            style="width: 150px; border-radius: 5px; margin-left: 5px; margin-right: 5px;"
+            >
+        </a>
+    </div>
 
   </div>
 </template>
@@ -95,5 +119,7 @@ export default {
 </script>
 
 <style>
+
+
 
 </style>

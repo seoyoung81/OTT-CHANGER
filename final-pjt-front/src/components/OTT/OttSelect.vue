@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h1>현재 구독 중인 OTT 서비스를 선택해주세요</h1>
+  <div class="ott-img-select">
+    <h1>현재 구독 중인 OTT 서비스를 선택해주세요</h1><br>
+
     <img alt="netflix" 
     :src="require(`@/assets/${netflix}_logo.png`)"
     @click="goRecommend(netflix)"
@@ -53,5 +54,12 @@ export default {
 </script>
 
 <style>
+.ott-img-select img {
+    width: 250px; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+    margin-right: 5px; 
+    cursor: pointer;
+}
 
 </style>

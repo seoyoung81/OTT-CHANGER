@@ -7,14 +7,40 @@
     </div>
 
     <!-- 영화 제목 -->
-    <p>{{ movie.title }}</p>
-    <p>영화 포스터: <img :src="poster_path_src" style="width:500px;;"></p>
-    <button v-if="!isLiked" @click="movieLike">좋아요!</button>
-    <button v-else @click="movieLike">좋아요 취소</button>
-        <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+    <br><br><br>
+    <div class="info-container">
+        <img :src="poster_path_src" style="width:700px; float: left; margin-left: 80px;">
+        <div class="movie-detail-info">
+            <br>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin-left: 450px;">{{ movie.title }}</h1>
+                <!-- 하트 -->
+                <div style="margin-right: 10%;">
+                    <img src="@/assets/heart_empty.png" v-if="!isLiked" @click="movieLike" class="heart-img">
+                    <img src="@/assets/heart_full.png" v-else @click="movieLike" class="heart-img">
+                    <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+                </div>
+            </div>
+            <!-- 수평선 -->
+            <hr style="width: 80%; margin: auto; height: 3px; background-color: white;"><br>
 
-    <p>영화 내용: {{ movie.overview}}</p>
+            <div style="text-align: left; margin-left: 10%;">
+                <p>누적 관객수 &nbsp; {{ movie.popularity * 10000 }} 명</p>
+                <p>평점 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ movie.vote_average }}</p>
+                <p>개봉일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ movie.release_date }}</p>
+            </div>
+
+            <!-- overview -->
+            <div style="margin-top: 10%; margin-left: 10%; margin-right: 10%;">
+                <span class="overview-text">{{ movie.overview }}</span>
+            </div>
+
+            
+
+        </div>
     </div>
+    </div>
+    
 </template>
 
 <script>
@@ -39,6 +65,7 @@ export default {
         const movie = JSON.parse(movieData)
         this.movie = movie
         this.likeUsers()
+        console.log('영화 정보는!!!!!', movie)
         // console.log(this.movie.id)
 
         // poster
@@ -112,7 +139,6 @@ export default {
         likeUsers() {
             const like_movie = this.movie
             // const user_pk = this.$store.state.user.id
-            console.log('hihihihihihihihihihihihihih')
             axios({
                 method: 'post',
                 url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.id}/`,
@@ -120,7 +146,7 @@ export default {
                 params: {}
             })
             .then((response) => {
-                console.log('잘왔니..?')
+                // console.log('잘왔니..?')
                 this.likes_count = response.data.likes_count
                 // this.$router.go(0)
             })
@@ -162,4 +188,32 @@ export default {
     z-index: 1;
 }
 
+.movie-detail-info {
+    width: 80%;
+    outline: 2px solid white;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 80px;
+}
+
+.info-container{ 
+    display: flex;
+    margin-bottom: 30px;
+   
+}
+
+
+.heart-img {
+    width: 100px;
+    height: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.overview-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
 </style>

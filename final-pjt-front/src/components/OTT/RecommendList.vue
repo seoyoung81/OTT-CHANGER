@@ -1,5 +1,6 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
+    <br>
     <RecommendItem
     v-for="(movie, idx) in movie_lst"
     :key="idx"

@@ -67,7 +67,8 @@ def movie_select(request):
             if len(movie_lst) == 10:
                 break
     
-    lst = random.sample(movies, 30)
+    lst = random.sample(movies[:56], 30)
+    
     movie_lst = movie_lst + lst
     serializer = MovieListSerializer(movie_lst, many=True)
     return Response(serializer.data)

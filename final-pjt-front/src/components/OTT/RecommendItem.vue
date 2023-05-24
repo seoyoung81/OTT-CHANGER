@@ -1,7 +1,7 @@
 <template>
   <div>
     <img :src="poster_src"
-    style="height:300px;"
+    style="width:200px; border-radius: 5px; margin: 5px;"
     >
   </div>
   

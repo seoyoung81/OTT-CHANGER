@@ -92,14 +92,15 @@ export default {
         this.poster_path_lst.push(movie.poster_path)
         
       })
-      const idx = _.random(20)
+      const idx = _.random(19)
       this.backdrop_path_src = this.backdrop_path_src + `${this.backdrop_path_lst[idx]}`
       this.poster_path_src = this.poster_path_src + `${this.poster_path_lst[idx]}`
       // console.log(this.backdrop_path_src)
       // console.log(this.backdrop_path_lst)
 
       this.movie_info = movies[idx]
-      console.log(this.movie_info)
+      // console.log(idx)
+      // console.log(this.movie_info)
     })
     .catch((error) =>{
       console.log(error)

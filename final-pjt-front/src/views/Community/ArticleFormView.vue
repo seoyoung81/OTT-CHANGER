@@ -5,7 +5,7 @@
     
       <div class="align-edit">
         <label for="title">제목 </label>
-        <input type="text" id="title" style="" v-model.trim="title"><br>
+        <input type="text" id="title" v-model.trim="title"><br>
       </div>
 
       <div class="align-edit"> 
@@ -87,7 +87,7 @@ export default {
 
 
 .align-edit input[type="text"]{
-  width: 700px;
+  width: 550px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;

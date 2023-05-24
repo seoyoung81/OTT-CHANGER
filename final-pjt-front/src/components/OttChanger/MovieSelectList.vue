@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="movie-select-img">
     <img :src="poster_src"
-    :style="{ height: '300px', filter: grayscale ? 'grayscale(100%)' : 'none' }"
+    :style="{ width: '200px', filter: grayscale ? 'grayscale(100%)' : 'none'}"
     @click="selectMovie"
     >    
   </div>
@@ -40,5 +40,9 @@ export default {
 </script>
 
 <style>
+.movie-select-img img {
+    border-radius: 10px;
+    margin: 5px;
+}
 
 </style>

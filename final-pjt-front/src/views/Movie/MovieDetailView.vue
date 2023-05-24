@@ -1,16 +1,53 @@
 <template>
   <div>
-    <h1>영화 정보</h1>
-    <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;">
+    <div style="position: relative;" class="detail-movie-bg">
+        <img :src="backdrop_path_src" class="detail-movie-backdrop">
+        <iframe :src="videoSrc" allowfullscreen class="detail-movie-ytb"></iframe>
+    </div>
+
+
+    <!-- <img :src="backdrop_path_src" style="width:100vw; opacity: 60%;"> -->
     
-    <iframe :src="videoSrc" allowfullscreen></iframe>
+    <!-- <iframe :src="videoSrc" allowfullscreen></iframe>
     <p>영화 제목: {{ movie.title }}</p>
     <p>영화 포스터: <img :src="poster_path_src" style="width:500px;"></p>
     <button v-if="!isLiked" @click="movieLike">좋아요!</button>
     <button v-else @click="movieLike">좋아요 취소</button>
         <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
 
-    <p>영화 내용: {{ movie.overview}}</p>
+    <p>영화 내용: {{ movie.overview}}</p> -->
+    <br><br><br>
+    <div class="info-container">
+        <img :src="poster_path_src" style="width:700px; float: left; margin-left: 80px;">
+        <div class="movie-detail-info">
+            <br>
+            <div style="display:flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin-left: 450px;">{{ movie.title }}</h1>
+                <!-- 하트 -->
+                <div style="margin-right: 10%;">
+                    <img src="@/assets/heart_empty.png" v-if="!isLiked" @click="movieLike" class="heart-img">
+                    <img src="@/assets/heart_full.png" v-else @click="movieLike" class="heart-img">
+                    <p>{{ likes_count }}명이 이 영화를 좋아합니다.</p>
+                </div>
+            </div>
+            <!-- 수평선 -->
+            <hr style="width: 80%; margin: auto; height: 3px; background-color: white;"><br>
+
+            <div style="text-align: left; margin-left: 10%;">
+                <p>누적 관객수 &nbsp; {{ movie.popularity * 10000 }} 명</p>
+                <p>평점 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ movie.vote_average }}</p>
+                <p>개봉일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ movie.release_date }}</p>
+            </div>
+
+            <!-- overview -->
+            <div style="margin-top: 10%; margin-left: 10%; margin-right: 10%;">
+                <span class="overview-text">{{ movie.overview }}</span>
+            </div>
+
+            
+
+        </div>
+    </div>
     </div>
     
   

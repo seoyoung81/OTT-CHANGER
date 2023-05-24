@@ -1,14 +1,15 @@
 <template>
   <div>
     <h1>보고 싶은 영화를 선택해주세요</h1>
-    <div class="d-flex">
+    <br>
+    <div class="d-flex flex-wrap">
       <MovieSelectList
       v-for="(movie, idx) in random_movie_lst"
       :key="idx"
       :idx="idx"
       :movie="movie"/>
     </div>
-    <button @click="goResult">결과 보기</button>
+    <button @click="goResult" class="ott-changer-btn" style="margin-top: 30px;">결과 보기</button>
   </div>
 </template>
 
