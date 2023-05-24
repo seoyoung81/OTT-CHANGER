@@ -18,6 +18,9 @@ export default {
     components: {
         MyArticlesItem
     },
+    props: {
+        user_id: Number,
+    },
     data() {
         return {
             my_articles: []
@@ -25,8 +28,8 @@ export default {
     },
     mounted() {
         console.log('MyArticleList',this.$route.params.user_id)
-        console.log('MyArticleList',this.$store.state.user.id)
-        this.$route.params.user_id = this.$store.state.user.id
+        console.log('MyArticleList',this.user_id)
+        this.$route.params.user_id = this.user_id
         axios({
             method: 'get',
             url: `http://127.0.0.1:8000/api/v1/articles/my_articles/${this.$route.params.user_id}/`,

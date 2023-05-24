@@ -41,12 +41,12 @@ export default {
         this.movie = { ...this.movie, m_id: 9999999 } // Add m_id field to like_movie object
         this.likeUsers()
         console.log(this.movie)
-
+        
         // poster
         this.backdrop_path_src = this.backdrop_path_src + `${this.movie.backdrop_path}`
         this.poster_path_src = this.poster_path_src + `${this.movie.poster_path}`
-
-
+        
+        
         axios({
             method: 'get',
             url: `https://api.themoviedb.org/3/movie/${movie.id}/videos`,
@@ -61,7 +61,7 @@ export default {
                     // console.log(element.type)
                     this.videoId = element.key
                     this.videoSrc = this.videoSrc + `${this.videoId}` + `${this.autoplay}`
-                    console.log(this.videoSrc)
+                    // console.log(this.videoSrc)
                     break;
             }}
             // console.log(this.videoSrc)
@@ -69,9 +69,10 @@ export default {
             // poster img
             
             })
-            .catch((error) => {
-                console.log(error)
-            })
+        .catch((error) => {
+            console.log(error)
+        })
+        console.log(this.Liked)
     },
     methods: {
         movieLike() {
@@ -117,28 +118,35 @@ export default {
                 params: {}
             })
             .then((response) => {
+                console.log(response.data)
                 console.log('잘왔니..?')
                 this.likes_count = response.data.likes_count
-                console.log(response.data)
                 this.movie.m_id = response.data.movie.m_id
-                // this.$router.go(0)
+                const liked_users = response.data.movie.like_users
+                console.log(liked_users)
+                const likedCheck = liked_users.find(user => user === this.$store.state.user.id)
+                if (likedCheck) {
+                    this.isLiked = true
+                } else {
+                    this.isLiked = false
+                }
             })
             .catch((error) => {
                 console.log(error)
             })
         }
     }
-
+    
 }
 </script>
 
 <style>
 .main-container {
-  text-align: center;
-
+    text-align: center;
+    
 }
 .container {
-  display: flex;
+    display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;

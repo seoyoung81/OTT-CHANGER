@@ -5,8 +5,8 @@
       <!-- <img src="@/assets/MyPage_logo02.png"
         style="width: 250px;"> -->
 
-      <MyLikesList/><br>
-      <MyArticlesList/>
+      <MyLikesList :user_id="user_id"/><br>
+      <MyArticlesList :user_id="user_id"/>
     </form>
   </div>
 </template>
@@ -23,11 +23,12 @@ export default {
     },
     data() {
         return {
-            username: this.$store.state.user.username
+            user_id: this.$route.params.id,
+            username: null
         }
     },
-    created() {
-
+    mounted() {
+      this.username = this.$route.query.username
     }
     
 }

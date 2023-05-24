@@ -24,13 +24,16 @@ export default {
     components: {
         MyLikesItem
     },
+    props: {
+        user_id: Number,
+    },
     data() {
         return {
             my_likes: []
         }
     },
     created() {
-        this.$route.params.user_id = this.$store.state.user.id
+        this.$route.params.user_id = this.user_id
         axios({
             method: 'get',
             url: `http://127.0.0.1:8000/api/v1/movies/likes/${this.$route.params.user_id}/`,
