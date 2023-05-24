@@ -36,7 +36,7 @@ export default {
         const movie = JSON.parse(movieData)
         this.movie = movie
         this.likeUsers()
-        console.log(this.movie.id)
+        // console.log(this.movie.id)
 
         // poster
         this.backdrop_path_src = this.backdrop_path_src + `${this.movie.backdrop_path}`
@@ -78,16 +78,16 @@ export default {
 
             axios({
                 method: 'post',
-                url: `http://127.0.0.1:8000/api/v1/movie_like/${like_movie.m_id}/`,
+                url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.m_id}/${user_pk}/`,
                 data: { like_movie, user_pk },
                 params: { }
             })
             .then((response) => {
                 this.likes_count = response.data.like_users_count
-                console.log(response.data.like_users_count)
+                // console.log(response.data.like_users_count)
                 const like_users = response.data.like_users
-                console.log(response.data.like_users)
-                console.log('전', this.isLiked)
+                // console.log(response.data.like_users)
+                // console.log('전', this.isLiked)
 
                 const likedUser = like_users.find(user => user.id === this.$store.state.user.id)
                 if (likedUser) {
@@ -111,8 +111,8 @@ export default {
             // const user_pk = this.$store.state.user.id
             console.log('hihihihihihihihihihihihihih')
             axios({
-                method: 'get',
-                url: `http://127.0.0.1:8000/api/v1/movie_like/${like_movie.m_id}/`,
+                method: 'post',
+                url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.id}/`,
                 data: { like_movie },
                 params: {}
             })
