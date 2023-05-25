@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>LogIn Page</h1><br>
+    <h1>Log In</h1><br>
     <form @submit.prevent="login" class="form-container">
     <div class="align">
       <label for="username">Username</label>

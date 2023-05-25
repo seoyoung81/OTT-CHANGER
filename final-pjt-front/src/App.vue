@@ -87,7 +87,7 @@ export default {
 /* @import 'final-pjt-front\src\assets\css\fonts.css'; */
 
 #app {
-  font-family: 'Montserrat', Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Custom1', 'Custom2', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -139,7 +139,19 @@ body {
   filter: brightness(70%);
 }
 
+@font-face {
+  font-family: 'Custom1';
+  src: url(@/fonts/LINESeedKR-Bd.ttf) format('woff');
+  font-weight: normal;
+  font-style:normal
+}
 
+@font-face {
+  font-family: 'Custom2';
+  src: url(@/fonts/LINESeedSans_Bd.ttf) format('woff');
+  font-weight: normal;
+  font-style:normal
+}
 
 
 
