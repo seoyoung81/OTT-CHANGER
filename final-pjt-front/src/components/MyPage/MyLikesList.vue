@@ -33,7 +33,9 @@ export default {
         }
     },
     created() {
+        console.log('MyArticleList',this.user_id)
         this.$route.params.user_id = this.user_id
+        console.log(this.user_id)
         axios({
             method: 'get',
             url: `http://127.0.0.1:8000/api/v1/movies/likes/${this.$route.params.user_id}/`,

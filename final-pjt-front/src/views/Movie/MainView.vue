@@ -73,6 +73,8 @@ export default {
   created() {
     if (this.isLogin){
       this.$store.dispatch('getUserInfo')
+      console.log('MainView', this.$store.state.user.id)
+      console.log('MainView', this.$store.state.user.username)
     }
     axios({
       method: 'get',

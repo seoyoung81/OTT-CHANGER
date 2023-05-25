@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import App from '../App.vue'
 import LogInView from '../views/LogInView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import CommunityView from '../views/Community/CommunityView.vue'
@@ -19,6 +20,11 @@ import MyPageView from '../views/MyPage/MyPageView'
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'App',
+  //   component: App,
+  // },
   {
     path: '/main',
     name: 'MainView',

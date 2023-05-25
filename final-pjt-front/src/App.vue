@@ -11,7 +11,7 @@
         <!-- 커뮤니티 다시 -->
       </router-link>
       <router-link v-if="isLogin" to="/ott"> OTT Changer |</router-link>
-      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"><img src="@/assets/MyPage_logo02.png"
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: $store.state.user.id }, query: { username: $store.state.user.username }}"><img src="@/assets/MyPage_logo02.png"
         style="width: 110px; margin: 10px; position: sticky; right: 10px; z-index: 999;" class="mypage-img"></router-link>
 
 
@@ -44,10 +44,8 @@ export default {
       }
     },
     created() {
-      console.log(this.isLogin)
+      this.$store.dispatch('clearToken')
       // console.log(this.$store.state.token)
-      this.loggedin_user_id = this.$store.state.user.id
-      // console.log(this.loggedin_user_id)
 
       // const path = '/main'
       // if (this.$route.path != path) {
@@ -57,6 +55,7 @@ export default {
     methods: {
       logOut(){
         this.$store.dispatch('logOut')
+        console.log(this.$store.state.token)
       },
     }
 

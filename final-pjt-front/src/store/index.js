@@ -59,7 +59,7 @@ export default new Vuex.Store({
       router.push({name: 'LogInView'})
     },
     SAVE_TOKEN_LOGIN(state, token) {
-      // console.log(token)
+      console.log(token)
       state.token = token
       router.push({name: 'MainView'})
       // 일단 홈으로 -> 메인페이지로 보낼 것
@@ -69,13 +69,14 @@ export default new Vuex.Store({
       state.user.id = null
       state.user.username = null
       state.user.email = null
-      console.log(state.user)
+      console.log('로그아웃 완료', state.token)
+      this.$router.push({name: 'MainView'})
     },
     GET_USER_INFO(state, userinfo) {
       state.user.id = userinfo.pk
       state.user.username = userinfo.username
       state.user.email = userinfo.email
-      // console.log('잘 들어왔는지 확인', state.user)
+      console.log('end getting User info ...', state.user)
     },
     SELECT_MOVIE(state, payload) {
       let cnt = 0
@@ -144,6 +145,9 @@ export default new Vuex.Store({
     RESET_LST(state) {
       state.selected_lst = []
       state.selected_lst_length = 0
+    },
+    CLEAR_TOKEN(state) {
+      state.token = null
     }
   },
   actions: {
@@ -165,17 +169,16 @@ export default new Vuex.Store({
       })
     },
     getUserInfo(context) {
+      console.log('getting User info ...')
       axios({
         method: 'get',
         url: `${API_URL}/accounts/user/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
-        
       })
       .then((response) => {
-        // console.log()
-        // console.log('응답 !!!!!!!!!!!!', response)
+        console.log('응답 !!!!!!!!!!!!', response)
         // console.log('이름!!!!!!!!!!!', response.data.username)
         // console.log('PK!!!!!!!!!!!', response.data.pk)
         context.commit('GET_USER_INFO', response.data)
@@ -204,10 +207,6 @@ export default new Vuex.Store({
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
-      // console.log(email)
-      // console.log(username)
-      // console.log(password1)
-      // console.log(password2)
 
       axios({
         method: 'post',
@@ -217,9 +216,6 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
-        // console.log(response)
-        // console.log(response.data)
-        // console.log(response.data.key)
         context.commit('SAVE_TOKEN_SIGNUP', response.data.key)
       })
       .catch((error) => {
@@ -229,8 +225,6 @@ export default new Vuex.Store({
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
-      // console.log(username)
-      // console.log(password)
 
       axios({
         method: 'post',
@@ -242,6 +236,7 @@ export default new Vuex.Store({
       .then((response) => {
         console.log(response)
         context.commit('SAVE_TOKEN_LOGIN', response.data.key)
+        // context.dispatch('getUserInfo')
       })
       .catch((error) => 
         console.log(error))
@@ -273,6 +268,9 @@ export default new Vuex.Store({
     },
     resetLst(context) {
       context.commit('RESET_LST')
+    },
+    clearToken(context) {
+      context.commit('CLEAR_TOKEN')
     }
   },
   
