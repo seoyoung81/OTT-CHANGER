@@ -1,10 +1,13 @@
 <template>
-    <div style="width: 150px" class="my-auto">
+    <div style="width: 150px" class="card-container">
         <img 
         :src="poster_src"
         @click="getMovieDetail"
         class="card-image"
         >
+        <p class="card-title">
+        {{ movie.title }}
+        </p>
   </div>
 
 </template>
@@ -41,17 +44,5 @@ export default {
 </script>
 
 <style>
-
-.card-image {
-    width: 200px;
-    height: auto;
-    border-radius: 30px;
-    transition: transform 0.3s ease;
-}
-
-.card-image:hover {
-    transform: scale(1.1);
-}
-  
 
 </style>

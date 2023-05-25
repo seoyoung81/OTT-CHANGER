@@ -62,14 +62,14 @@ export default new Vuex.Store({
       // console.log(token)
       state.token = token
       router.push({name: 'MainView'})
-      // 일단 홈으로 -> 메인페이지로 보낼 것
     },
     LOG_OUT(state) {
       state.token = null
       state.user.id = null
       state.user.username = null
       state.user.email = null
-      console.log(state.user)
+      console.log('로그아웃 되었는지 확인하기 위함', state.user)
+      router.push({name: 'MainView'})
     },
     GET_USER_INFO(state, userinfo) {
       state.user.id = userinfo.pk
@@ -179,6 +179,8 @@ export default new Vuex.Store({
         // console.log('이름!!!!!!!!!!!', response.data.username)
         // console.log('PK!!!!!!!!!!!', response.data.pk)
         context.commit('GET_USER_INFO', response.data)
+        console.log(response.data)
+        
       })
     },
     
@@ -240,15 +242,25 @@ export default new Vuex.Store({
         }
       })
       .then((response) => {
-        console.log(response)
+        console.log('로그인 했을 때 response 확인:', response)
         context.commit('SAVE_TOKEN_LOGIN', response.data.key)
+
+        
       })
-      .catch((error) => 
-        console.log(error))
+      .catch((error) => {
+        // console.log(error)
+        // console.log(error.message)
+        // console.log(error.message === 'Request failed with status code 400')
+        if (error.message === 'Request failed with status code 400'){
+          alert('로그인을 다시 시도해주세요')
+  
+        }
+      })
+      
     },
     logOut(context) {
       console.log('로그아웃 시도')
-      console.log(context.state.token)
+      // console.log(context.state.token)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,
