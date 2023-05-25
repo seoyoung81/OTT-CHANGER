@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "CustomFontKR";
+  src: url('@/public/fonts/LINESeedKR-Bd.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "CustomFontEN";
+  src: url('@/public/fonts/LINESeedSans_Bd.ttf') format('truetype');
+}
+
+body {
+  font-family: 'CustomFontKR', 'CustomFontEN', sans-serif;
+}

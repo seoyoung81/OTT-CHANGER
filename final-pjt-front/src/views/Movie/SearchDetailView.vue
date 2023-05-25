@@ -13,7 +13,7 @@
         <div class="movie-detail-info">
             <br>
             <div style="display:flex; justify-content: space-between; align-items: center;">
-                <h1 style="margin-left: 450px;">{{ movie.title }}</h1>
+                <h1 style="margin-left: 95px;">{{ movie.title }}</h1>
                 <!-- 하트 -->
                 <div style="margin-right: 10%;">
                     <img src="@/assets/heart_empty.png" v-if="!isLiked" @click="movieLike" class="heart-img">

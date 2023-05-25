@@ -4,6 +4,7 @@
         <h1> {{ username }} 님에게 어울리는 OTT는</h1>
         <img :src="require(`@/assets/${resultOTT}_logo.png`)" style="width: 300px; margin-top: 30px; margin-bottom: 20px; border-radius: 15px;">
     </div>
+    <button @click="goMain" class="home-btn">홈으로</button>&nbsp;
     <button @click="goSelect" class="custom-button-list">다시 고르기</button>
   </div>
 </template>
@@ -28,6 +29,9 @@ export default {
     methods: {
         goSelect() {
             this.$router.push({name: 'MovieSelectView'})
+        },
+        goMain() {
+          this.$router.push({name: 'MainView'})
         }
     }
 }
@@ -43,5 +47,17 @@ export default {
     from { opacity: 0; } /* 시작 시 투명도 0 */
     to { opacity: 1; } /* 끝나는 시점에 투명도 1 */
   }
+
+.home-btn {
+  
+  padding: 10px 15px;
+  background-color: #FF4081;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 
 </style>

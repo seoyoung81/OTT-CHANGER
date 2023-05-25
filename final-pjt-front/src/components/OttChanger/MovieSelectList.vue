@@ -45,6 +45,7 @@ export default {
 .movie-select-img img {
     border-radius: 10px;
     margin: 5px;
+    cursor: pointer;
 }
 
 </style>
