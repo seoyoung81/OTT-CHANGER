@@ -21,7 +21,7 @@
       <button v-else @click="logOut" class="logout-btn">Log Out</button>
 
       <!-- mypage -->
-      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: loggedin_user_id}}"><img src="@/assets/MyPage_logo02.png"
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: $store.state.user.id }, query: { username: $store.state.user.username }}"><img src="@/assets/MyPage_logo02.png"
         style="width: 120px; float: right; margin: 25px 25px 10px 25px;" class="mypage-img">
       </router-link>
 
@@ -54,10 +54,8 @@ export default {
       }
     },
     created() {
-      console.log(this.isLogin)
+      // this.$store.dispatch('clearToken')
       // console.log(this.$store.state.token)
-      this.loggedin_user_id = this.$store.state.user.id
-      // console.log(this.loggedin_user_id)
 
       // const path = '/main'
       // if (this.$route.path != path) {
@@ -67,10 +65,22 @@ export default {
     methods: {
       logOut(){
         this.$store.dispatch('logOut')
-      },
+        console.log(this.$store.state.token)
+        // const path = '/main'
+        // if (this.$route.path !== path) {
+        //   this.$router.push(path)
+        // }
+      }
     }
-
-}
+      // beforeRouteLeave(to, from, next) {
+      //   if (to.name === 'MainView' && from.name === 'MainView') {
+      //     // Prevent navigation duplication when leaving and returning to MainView
+      //     next(false)
+      //   } else {
+      //     next()
+      //   }
+      // }
+  }
 </script>
 
 <style>

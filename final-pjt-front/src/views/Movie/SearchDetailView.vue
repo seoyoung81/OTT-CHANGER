@@ -105,7 +105,7 @@ export default {
             console.log('좋아요 누른 영화 정보', like_movie)
             console.log('좋아요 누른 유저 id', user_pk)
             // console.log(this.$store.state.token)
-            if (this.$store.state.isLogin === false) {
+            if (this.$store.getters.isLogin === false) {
                 alert('로그인 해주세요!')
                 return
             } 

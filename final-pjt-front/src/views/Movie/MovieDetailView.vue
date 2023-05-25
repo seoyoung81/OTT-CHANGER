@@ -120,6 +120,10 @@ export default {
             // console.log('좋아요 누른 영화 정보', like_movie)
             // console.log('좋아요 누른 유저 id', user_pk)
             console.log(like_movie.m_id)
+            if (this.$store.getters.isLogin === false) {
+                alert('로그인 해주세요!')
+                return
+            }
             axios({
                 method: 'post',
                 url: `http://127.0.0.1:8000/api/v1/movie_likes/${like_movie.m_id}/${user_pk}/`,
