@@ -3,21 +3,31 @@
     <nav>
       <!-- main logo -->
       <router-link to="/main">
-        <img src="@/assets/main_log2.png" style="width: 200px; float: left; margin-left: 10px;">
+        <img src="@/assets/main_log2.png" style="width: 100px; float: left; margin-left: 5px;">
       </router-link>
       <!-- community -->
-      <router-link to="/community">
-        <img src="@/assets/community.png" style="width: 110px;">
-        <!-- 커뮤니티 다시 -->
+      <router-link to="/community" style="float: left; margin: 25px;">
+        Community
       </router-link>
-      <router-link v-if="isLogin" to="/ott"> OTT Changer |</router-link>
-      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: $store.state.user.id }, query: { username: $store.state.user.username }}"><img src="@/assets/MyPage_logo02.png"
-        style="width: 110px; margin: 10px; position: sticky; right: 10px; z-index: 999;" class="mypage-img"></router-link>
 
+      <!-- ott changer -->
+      <router-link v-if="isLogin" to="/ott" style="float: left; margin: 25px 0px"> OTT Changer</router-link>
 
-      <router-link v-if="!isLogin" to="/signup"> Sign Up | </router-link>
-      <router-link v-if="!isLogin" to="/login" >Log In</router-link>
+      
+      <!-- log in -->
+      <router-link v-if="!isLogin" to="/login" style="float: right; margin: 25px;">Log In</router-link>
+      
+      <!-- log out -->
       <button v-else @click="logOut" class="logout-btn">Log Out</button>
+
+      <!-- mypage -->
+      <router-link v-if="isLogin" :to="{name: 'MyPageView', params: { id: $store.state.user.id }, query: { username: $store.state.user.username }}"><img src="@/assets/MyPage_logo02.png"
+        style="width: 120px; float: right; margin: 25px 25px 10px 25px;" class="mypage-img">
+      </router-link>
+
+      <!-- sign up -->
+      <router-link v-if="!isLogin" to="/signup" style="float: right; margin: 25px;"> Sign Up</router-link>
+
 
 
       <br><br>
@@ -44,7 +54,7 @@ export default {
       }
     },
     created() {
-      this.$store.dispatch('clearToken')
+      // this.$store.dispatch('clearToken')
       // console.log(this.$store.state.token)
 
       // const path = '/main'
@@ -56,10 +66,21 @@ export default {
       logOut(){
         this.$store.dispatch('logOut')
         console.log(this.$store.state.token)
-      },
+        // const path = '/main'
+        // if (this.$route.path !== path) {
+        //   this.$router.push(path)
+        // }
+      }
     }
-
-}
+      // beforeRouteLeave(to, from, next) {
+      //   if (to.name === 'MainView' && from.name === 'MainView') {
+      //     // Prevent navigation duplication when leaving and returning to MainView
+      //     next(false)
+      //   } else {
+      //     next()
+      //   }
+      // }
+  }
 </script>
 
 <style>
@@ -73,15 +94,18 @@ export default {
 
 nav {
   padding: 30px;
+  text-decoration: none;
 }
 
 nav a {
   font-weight: bold;
   color: #e0e0e0;
+  text-decoration: none;
+  font-size: 24px;
 }
 
 nav a.router-link-exact-active {
-  color: #61dafb;
+  color: #ff4081;
 }
 
 body {
@@ -99,6 +123,7 @@ body {
   font-size: 14px;
   cursor: pointer;
   float: right;
+  margin: 15px;
   
 
 }

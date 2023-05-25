@@ -1,10 +1,13 @@
 <template>
-    <div style="width: 150px" class="my-auto">
+    <div style="width: 150px" class="card-container">
         <img 
         :src="poster_src"
         @click="getMovieDetail"
         class="card-image"
         >
+        <p class="card-title">
+        {{ movie.title }}
+        </p>
     </div>
   </template>
   

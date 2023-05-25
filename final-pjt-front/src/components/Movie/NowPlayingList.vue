@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="dis-flex mx-auto" style="width: 80%; height: 300px;" >
+    <div class="dis-flex mx-auto">
         <NowPlayingItem
         v-for="(movie, idx) in nowplaying_lst"
         :key="idx"
@@ -58,7 +58,11 @@
     display: flex;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    width: 80%; 
+    height: 270px; 
+    padding-top: 15px;
   }
+
   
   .dis-flex::-webkit-scrollbar {
   width: 5px; /* Width of the vertical scrollbar */

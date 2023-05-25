@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <h5>{{ article.id }}</h5> -->
     <br><br>
     
     <!-- 작성자 -->

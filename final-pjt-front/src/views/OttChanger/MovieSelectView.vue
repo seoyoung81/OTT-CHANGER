@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>보고 싶은 영화를 선택해주세요</h1>
-    <p>{{ this.$store.state.selected_lst.length }}</p>
+    <h5 style="margin-top: 20px;">{{ this.$store.state.selected_lst.length }}</h5>
     <br>
     <div class="d-flex flex-wrap">
       <MovieSelectList
